@@ -2,6 +2,7 @@ package Entity;
 
 // import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -25,6 +26,8 @@ public class Player extends Entity {
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
+        solidArea = new Rectangle(8, 16, gp.tileSize - 10, gp.tileSize - 10);
 
         setDefaultValues();
         getPlayerImage();
@@ -73,6 +76,9 @@ public class Player extends Entity {
                 direnction = "left";
                 worldX -= speed;
             }
+
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
 
             spriteCounter++;
             if (spriteCounter > 10) {
