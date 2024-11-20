@@ -18,5 +18,6 @@ public class Main {
         window.setVisible(true);
 
         gamePanel.startGameThread();
+        System.out.println("Added Gab branch");
     }
 }
