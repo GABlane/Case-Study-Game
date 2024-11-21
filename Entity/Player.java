@@ -2,6 +2,7 @@ package Entity;
 
 // import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -26,13 +27,15 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
+        solidArea = new Rectangle(8, 16, gp.tileSize - 10, gp.tileSize - 10);
+
         setDefaultValues();
         getPlayerImage();
     }
 
     void setDefaultValues() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 23;
+        worldX = gp.tileSize * 1;
+        worldY = gp.tileSize * 10;
         speed = 5;
         direnction = "down";
     }
@@ -59,19 +62,37 @@ public class Player extends Entity {
                 || keyH.rightPressed == true) {
             if (keyH.upPressed == true) {
                 direnction = "up";
-                worldY -= speed;
             }
             if (keyH.downPressed == true) {
                 direnction = "down";
-                worldY += speed;
             }
             if (keyH.rightPressed == true) {
                 direnction = "right";
-                worldX += speed;
             }
             if (keyH.leftPressed == true) {
                 direnction = "left";
-                worldX -= speed;
+            }
+
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            if (collisionOn == false) {
+                switch (direnction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                    default:
+                        break;
+                }
             }
 
             spriteCounter++;
