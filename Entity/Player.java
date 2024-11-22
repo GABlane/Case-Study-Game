@@ -5,9 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -34,8 +32,8 @@ public class Player extends Entity {
     }
 
     void setDefaultValues() {
-        worldX = gp.tileSize * 1;
-        worldY = gp.tileSize * 10;
+        worldX = gp.tileSize * 26;
+        worldY = gp.tileSize * 24;
         speed = 5;
         direnction = "down";
     }
@@ -51,7 +49,6 @@ public class Player extends Entity {
 
         } catch (IOException e) {
             e.printStackTrace();
-            ;
         }
 
     }

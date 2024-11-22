@@ -5,9 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 
 public class TileManager {
@@ -46,6 +44,13 @@ public class TileManager {
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/lava.png"));
+            
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/stone.png"));
+            tile[5].collision = true;
+
+            // tile[6] = new Tile();
+            // tile[6].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/lava.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
