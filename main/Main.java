@@ -16,6 +16,8 @@ public class Main {
 
         window.pack();
 
+        System.out.println("lance bakla");
+
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
