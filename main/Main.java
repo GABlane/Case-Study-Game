@@ -17,6 +17,8 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+        System.err.println("Gab is here");
+
         gamePanel.startGameThread();
     }
 }
