@@ -12,11 +12,7 @@ public class Main {
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 
-        System.out.println("Lance to tol");
-
         window.pack();
-
-        System.out.println("lance bakla");
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
