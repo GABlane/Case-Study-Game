@@ -12,6 +12,8 @@ public class Main {
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 
+        System.out.println("testing");
+
         window.pack();
 
         window.setLocationRelativeTo(null);
