@@ -13,6 +13,8 @@ public class AssetSetter {
     public void setObject() {
 
         // sa gagawa lang ng mapa gagalaw neto
+        // if gusto gumawa ng object make a file first in the Obj package || file tapos
+        // dito nakalagay kung saan mo lalagay sa mapa yung object
 
         // gp.obj[0] = new OBJ_Sword();
         // gp.obj[0].worldX = 23 * gp.tileSize;
