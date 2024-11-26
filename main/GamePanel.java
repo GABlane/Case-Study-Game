@@ -34,7 +34,6 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player = new Player(this, keyH);
     public SuperObj obj[] = new SuperObj[10];
-    
 
     public GamePanel() {
 
@@ -44,7 +43,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-    public void setUpGame(){
+
+    public void setUpGame() {
         aSetter.setObject();
     }
 
@@ -87,7 +87,17 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+        // TILE
         tileM.draw(g2);
+
+        // OBJECT
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        // PLAYER
         player.draw(g2);
 
         g2.dispose();
