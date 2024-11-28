@@ -35,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public SuperObj obj[] = new SuperObj[10];
 
+
+    
     public GamePanel() {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -46,6 +48,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setUpGame() {
         aSetter.setObject();
+
+
     }
 
     void startGameThread() {
@@ -78,8 +82,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     void update() {
-
-        player.update();
+            player.update();
 
     }
 
