@@ -18,6 +18,7 @@ public class Player extends Entity {
     public final int screenY;
     
     int hashkey = 0 ;
+    int  nspeed = 5;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -40,8 +41,10 @@ public class Player extends Entity {
         worldX = gp.tileSize * 26;
         worldY = gp.tileSize * 24;
         speed = 5;
-        direnction = "down";
+        direnction = "down"; 
     }
+    
+    
 
     public void getPlayerImage() {
         try {
@@ -75,6 +78,12 @@ public class Player extends Entity {
                 direnction = "left";
             }
 
+            trapSeconds++;
+        if (trapSeconds == 200) {
+            trapSeconds= 0;
+            speed = nspeed;
+        }
+
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
@@ -100,6 +109,7 @@ public class Player extends Entity {
                         break;
                 }
             }
+        
 
             spriteCounter++;
             if (spriteCounter > 10) {
@@ -127,6 +137,14 @@ public class Player extends Entity {
                         gp.obj[i] = null;
                         hashkey--;
                 }
+                break;
+                case "Boot":
+                nspeed += 1;
+                gp.obj[i] = null;
+                break;
+                case "Hole":
+                speed = 0;
+                gp.obj[i] = null;
                 break;
                 default:
                     break;
