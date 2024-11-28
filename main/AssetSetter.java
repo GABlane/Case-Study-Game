@@ -1,6 +1,8 @@
 package main;
 
-import Obj.OBJ_Sword;
+import Obj.OBJ_DOOR;
+import Obj.OBJ_Key;
+// import Obj.OBJ_Sword;
 
 public class AssetSetter {
 
@@ -12,16 +14,13 @@ public class AssetSetter {
 
     public void setObject() {
 
-        // sa gagawa lang ng mapa gagalaw neto
-        // if gusto gumawa ng object make a file first in the Obj package || file tapos
-        // dito nakalagay kung saan mo lalagay sa mapa yung object
+    
+        gp.obj[0] = new OBJ_Key();
+        gp.obj[0].worldX = 17 * gp.tileSize;
+        gp.obj[0].worldY = 14 * gp.tileSize;
 
-        // gp.obj[0] = new OBJ_Sword();
-        // gp.obj[0].worldX = 23 * gp.tileSize;
-        // gp.obj[0].worldY = 23 * gp.tileSize;
-
-        // gp.obj[1] = new OBJ_Sword();
-        // gp.obj[1].worldX = 24 * gp.tileSize;
-        // gp.obj[1].worldY = 24 * gp.tileSize;
+        gp.obj[1] = new OBJ_DOOR();
+        gp.obj[1].worldX = 24 * gp.tileSize;
+        gp.obj[1].worldY = 24 * gp.tileSize;
     }
 }
