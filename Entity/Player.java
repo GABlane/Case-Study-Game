@@ -16,8 +16,9 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
+    public int hasKey = 0;
     
-    int hashkey = 0 ;
+    public int hashkey = 0 ;
     int  nspeed = 5;
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -131,21 +132,30 @@ public class Player extends Entity {
                 case "Key":
                     hashkey ++;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("Alwyn POGI <3");
                     break;
                 case "Door":
                 if (hashkey > 0) {
                         gp.obj[i] = null;
                         hashkey--;
+                        gp.ui.showMessage("Binuksan mo pinto alwyn");
+                }
+                else{
+                    gp.ui.showMessage("you need susi bruh");
                 }
                 break;
                 case "Boot":
-                nspeed += 1;
-                gp.obj[i] = null;
-                break;
+                    nspeed += 1;
+                    gp.obj[i] = null;
+                    gp.ui.showMessage("Speed up!");
+                    break;
                 case "Hole":
-                speed = 0;
-                gp.obj[i] = null;
-                break;
+                    speed = 0;
+                    gp.obj[i] = null;
+                    gp.ui.showMessage("OOPS !!");
+                    break;
+                // case "teleport" para lang sa lalagay mo gab
+
                 default:
                     break;
             }
