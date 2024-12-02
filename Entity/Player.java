@@ -17,9 +17,9 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
-    
-    public int hashkey = 0 ;
-    int  nspeed = 5;
+
+    public int hashkey = 0;
+    int nspeed = 5;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -33,7 +33,7 @@ public class Player extends Entity {
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        
+
         setDefaultValues();
         getPlayerImage();
     }
@@ -42,10 +42,8 @@ public class Player extends Entity {
         worldX = gp.tileSize * 26;
         worldY = gp.tileSize * 24;
         speed = 5;
-        direnction = "down"; 
+        direnction = "down";
     }
-    
-    
 
     public void getPlayerImage() {
         try {
@@ -80,14 +78,13 @@ public class Player extends Entity {
             }
 
             trapSeconds++;
-        if (trapSeconds == 200) {
-            trapSeconds= 0;
-            speed = nspeed;
-        }
+            if (trapSeconds == 200) {
+                trapSeconds = 0;
+                speed = nspeed;
+            }
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
-
 
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
@@ -110,7 +107,6 @@ public class Player extends Entity {
                         break;
                 }
             }
-        
 
             spriteCounter++;
             if (spriteCounter > 10) {
@@ -124,26 +120,27 @@ public class Player extends Entity {
         }
 
     }
-    public void pickUpObject(int i){
+
+    public void pickUpObject(int i) {
         if (i != 999) {
             String objectName = gp.obj[i].name;
 
             switch (objectName) {
                 case "Key":
-                    hashkey ++;
+
+                    hashkey++;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("Alwyn POGI <3");
+                    gp.ui.showMessage("Got A Key");
                     break;
                 case "Door":
-                if (hashkey > 0) {
+                    if (hashkey > 0) {
                         gp.obj[i] = null;
                         hashkey--;
-                        gp.ui.showMessage("Binuksan mo pinto alwyn");
-                }
-                else{
-                    gp.ui.showMessage("you need susi bruh");
-                }
-                break;
+                        gp.ui.showMessage("OPENED THE DOOR");
+                    } else {
+                        gp.ui.showMessage("You have " + hashkey + " key");
+                    }
+                    break;
                 case "Boot":
                     nspeed += 1;
                     gp.obj[i] = null;
@@ -161,8 +158,6 @@ public class Player extends Entity {
             }
         }
     }
-
-    
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
