@@ -13,7 +13,7 @@ public class Main {
         window.add(gamePanel);
 
         System.out.println("Added my branch");
-
+        System.out.println("Renz    ");
         window.pack();
 
         window.setLocationRelativeTo(null);
