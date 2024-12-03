@@ -151,7 +151,11 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     gp.ui.showMessage("OOPS !!");
                     break;
-                // case "teleport" para lang sa lalagay mo gab
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playerSE(0);
+                    break;
 
                 default:
                     break;

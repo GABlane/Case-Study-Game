@@ -12,13 +12,10 @@ public class Main {
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 
-        System.out.println("Added my branch");
-
         window.pack();
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
         gamePanel.setUpGame();
         gamePanel.startGameThread();
     }
