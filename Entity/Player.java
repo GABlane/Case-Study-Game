@@ -16,7 +16,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
+    // public int hasKey = 0;
 
     public int hashkey = 0;
     int nspeed = 5;
@@ -123,43 +123,7 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
-            String objectName = gp.obj[i].name;
-
-            switch (objectName) {
-                case "Key":
-
-                    hashkey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("Got A Key");
-                    break;
-                case "Door":
-                    if (hashkey > 0) {
-                        gp.obj[i] = null;
-                        hashkey--;
-                        gp.ui.showMessage("OPENED THE DOOR");
-                    } else {
-                        gp.ui.showMessage("You have " + hashkey + " key");
-                    }
-                    break;
-                case "Boot":
-                    nspeed += 1;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("Speed up!");
-                    break;
-                case "Hole":
-                    speed = 0;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("OOPS !!");
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    gp.playerSE(0);
-                    break;
-
-                default:
-                    break;
-            }
+            
         }
     }
 
