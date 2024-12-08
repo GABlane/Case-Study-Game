@@ -1,11 +1,6 @@
 package main;
 
-import Obj.OBJ_Boots;
-import Obj.OBJ_Chest;
-import Obj.OBJ_DOOR;
-import Obj.OBJ_Hole;
-import Obj.OBJ_Key;
-// import Obj.OBJ_Sword;
+import Entity.NPC_Jake;
 
 public class AssetSetter {
 
@@ -17,6 +12,11 @@ public class AssetSetter {
 
     public void setObject() {
 
-        
+    }
+
+    public void setNPC() {
+        gp.Npc[0] = new NPC_Jake(gp);
+        gp.Npc[0].worldX = gp.tileSize * 27;
+        gp.Npc[0].worldY = gp.tileSize * 22;
     }
 }

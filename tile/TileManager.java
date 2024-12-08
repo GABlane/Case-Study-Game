@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class TileManager {
 
@@ -26,143 +27,65 @@ public class TileManager {
     }
 
     public void getTileImage() {
+
+        // floring
+        setup(20, "snow", false);
+
+        // boulder
+        setup(21, "ice_tree", true);
+
+        // wall
+        setup(22, "ice_wall", true);
+
+        // water
+        setup(23, "water", true);
+
+        // lava
+        setup(25, "stone", true);
+        // setup(24, "lava", true);
+
+        // stairs
+        setup(26, "Stair", false);
+        setup(27, "LeftStair", false);
+        setup(28, "RightStair", false);
+
+        // tree
+        setup(29, "1Tree", true);
+        setup(10, "2Tree", true);
+        setup(11, "4Tree", true);
+        setup(12, "3Tree", true);
+        setup(13, "6Tree", true);
+        setup(14, "5Tree", true);
+        setup(15, "7Tree", true);
+        setup(16, "8Tree", true);
+        setup(30, "tree-left", true);
+        setup(31, "tree-right", true);
+
+        // water
+        setup(17, "water-upper", true);
+        setup(18, "water-upper2", true);
+        setup(19, "water-toleft", true);
+        setup(32, "water-down", true);
+        setup(33, "water-left", true);
+        setup(34, "water-right", true);
+        setup(35, "water-right-down", true);
+        setup(36, "water-down-right", true);
+        setup(37, "water-left-down", true);
+        setup(38, "water-left-up", true);
+        setup(39, "water-down-left", true);
+        setup(40, "water-right-down2", true);
+        setup(41, "water-up-right", true);
+
+    }
+
+    public void setup(int index, String ImagePath, boolean collision) {
+        UtilityTool uTool = new UtilityTool();
+
         try {
-            // floor
-            tile[20] = new Tile();
-            tile[20].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/snow.png"));
-
-            // tree
-            tile[21] = new Tile();
-            tile[21].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/ice_tree.png"));
-            tile[21].collision = true;
-
-            // wall
-            tile[22] = new Tile();
-            tile[22].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/ice_wall.png"));
-            tile[22].collision = true;
-
-            // water
-            tile[23] = new Tile();
-            tile[23].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water.png"));
-            tile[23].collision = true;
-
-            // lava
-            tile[24] = new Tile();
-            tile[24].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/lava.png"));
-
-            // stone
-            tile[25] = new Tile();
-            tile[25].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/stone.png"));
-            tile[25].collision = true;
-
-            tile[26] = new Tile();
-            tile[26].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/Stair.png"));
-
-            tile[27] = new Tile();
-            tile[27].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/LeftStair.png"));
-
-            tile[28] = new Tile();
-            tile[28].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/RightStair.png"));
-
-            tile[29] = new Tile();
-            tile[29].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/1Tree.png"));
-            tile[29].collision = true;
-
-            tile[10] = new Tile();
-            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/2Tree.png"));
-            tile[10].collision = true;
-
-            tile[12] = new Tile();
-            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/3Tree.png"));
-            tile[12].collision = true;
-
-            tile[11] = new Tile();
-            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/4Tree.png"));
-            tile[11].collision = true;
-
-            tile[14] = new Tile();
-            tile[14].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/5Tree.png"));
-            tile[14].collision = true;
-
-            tile[13] = new Tile();
-            tile[13].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/6Tree.png"));
-            tile[13].collision = true;
-
-            tile[15] = new Tile();
-            tile[15].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/7Tree.png"));
-            tile[15].collision = true;
-
-            tile[16] = new Tile();
-            tile[16].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/8Tree.png"));
-            tile[16].collision = true;
-
-            tile[17] = new Tile();
-            tile[17].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-upper.png"));
-            tile[17].collision = true;
-
-            tile[18] = new Tile();
-            tile[18].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-upper2.png"));
-            tile[18].collision = true;
-
-            tile[19] = new Tile();
-            tile[19].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-toleft.png"));
-            tile[19].collision = true;
-
-            tile[30] = new Tile();
-            tile[30].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree-left.png"));
-            tile[30].collision = true;
-
-            tile[31] = new Tile();
-            tile[31].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree-right.png"));
-            tile[31].collision = true;
-
-            tile[32] = new Tile();
-            tile[32].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-down.png"));
-            tile[32].collision = true;
-
-            tile[33] = new Tile();
-            tile[33].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-left.png"));
-            tile[33].collision = true;
-
-            tile[34] = new Tile();
-            tile[34].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-right.png"));
-            tile[34].collision = true;
-
-            tile[35] = new Tile();
-            tile[35].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-right-down.png"));
-            tile[35].collision = true;
-
-            tile[36] = new Tile();
-            tile[36].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-down-right.png"));
-            tile[36].collision = true;
-
-            tile[37] = new Tile();
-            tile[37].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-left-down.png"));
-            tile[37].collision = true;
-
-            tile[38] = new Tile();
-            tile[38].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-left-up.png"));
-            tile[38].collision = true;
-
-            tile[39] = new Tile();
-            tile[39].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-down-left.png"));
-            tile[39].collision = true;
-
-            tile[40] = new Tile();
-            tile[40].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-right-down2.png"));
-            tile[40].collision = true;
-
-            tile[41] = new Tile();
-            tile[41].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water-up-right.png"));
-            tile[41].collision = true;
-
-            // tile[6] = neddww Tile();
-            // tile[6].image =
-            // ImageIO.read(getClass().getResourceAsStream("/res/tiles/lava.png"));
-
-            // tile[6] = new Tile();
-            // tile[6].image =
-            // ImageIO.read(getClass().getResourceAsStream("/res/tiles/lava.png"));
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + ImagePath + ".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -215,7 +138,7 @@ public class TileManager {
                     worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                     worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
 
             worldCol++;

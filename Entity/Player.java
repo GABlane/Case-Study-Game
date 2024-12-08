@@ -4,26 +4,23 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+
 import main.GamePanel;
 import main.KeyHandler;
 
 public class Player extends Entity {
 
-    GamePanel gp;
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
     // public int hasKey = 0;
 
-    public int hashkey = 0;
     int nspeed = 5;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
-        this.gp = gp;
+        super(gp);
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -35,7 +32,7 @@ public class Player extends Entity {
         solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
-        getPlayerImage();
+        getImage();
     }
 
     void setDefaultValues() {
@@ -45,21 +42,19 @@ public class Player extends Entity {
         direnction = "down";
     }
 
-    public void getPlayerImage() {
-        try {
-            up = ImageIO.read(getClass().getResourceAsStream("/res/player/up.png"));
-            down = ImageIO.read(getClass().getResourceAsStream("/res/player/down.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/res/player/left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/res/player/left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/res/player/right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/res/player/right2.png"));
+    @Override
+    public void getImage() {
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        up = setup("/player/up");
+        down = setup("/player/down");
+        left1 = setup("/player/left1");
+        left2 = setup("/player/left2");
+        right1 = setup("/player/right1");
+        right2 = setup("/player/right2");
 
     }
 
+    @Override
     public void update() {
 
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
@@ -79,8 +74,6 @@ public class Player extends Entity {
 
             trapSeconds++;
             if (trapSeconds == 200) {
-                trapSeconds = 0;
-                speed = nspeed;
             }
 
             collisionOn = false;
@@ -88,6 +81,9 @@ public class Player extends Entity {
 
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
+
+            int npcIndex = gp.cChecker.checkEntity(this, gp.Npc);
+            interactNPC(npcIndex);
 
             if (collisionOn == false) {
                 switch (direnction) {
@@ -121,9 +117,17 @@ public class Player extends Entity {
 
     }
 
+    // object
     public void pickUpObject(int i) {
         if (i != 999) {
-            
+
+        }
+    }
+
+    // npc
+    public void interactNPC(int i) {
+        if (i != 999) {
+            System.out.println("Uy Fin!");
         }
     }
 
@@ -154,7 +158,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
 
         // g2.setColor(Color.white);
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize);

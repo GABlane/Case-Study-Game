@@ -5,16 +5,16 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-
     public boolean upPressed, downPressed, leftPressed, rightPressed;
     GamePanel gp;
-    
-    public KeyHandler(GamePanel gp){
+    boolean checkDraw = false;
+
+    public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
 
     public KeyHandler() {
-        //TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -38,14 +38,20 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyEvent.VK_P) {
-            if(gp.gameState == gp.playState){
+            if (gp.gameState == gp.playState) {
                 gp.gameState = gp.pauseState;
-            }
-            else if(gp.gameState == gp.pauseState){
+            } else if (gp.gameState == gp.pauseState) {
                 gp.gameState = gp.playState;
             }
         }
 
+        if (code == KeyEvent.VK_T) {
+            if (checkDraw == false) {
+                checkDraw = true;
+            } else if (checkDraw == true) {
+                checkDraw = false;
+            }
+        }
     }
 
     @Override
