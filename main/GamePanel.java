@@ -1,5 +1,6 @@
 package main;
 
+import Entity.Entity;
 import Entity.Player;
 import Obj.SuperObj;
 import java.awt.Color;
@@ -29,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     // System Sound
     Sound music = new Sound();
     Sound SFX = new Sound();
@@ -43,6 +44,12 @@ public class GamePanel extends JPanel implements Runnable {
     // Entity Object
     public Player player = new Player(this, keyH);
     public SuperObj obj[] = new SuperObj[10];
+    public Entity Npc[] = new Entity[10];
+
+    // game state
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     public GamePanel() {
 
@@ -55,8 +62,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setUpGame() {
         aSetter.setObject();
-
+        aSetter.setNPC();
         playMusic(0);
+
+        gameState = playState;
     }
 
     void startGameThread() {
@@ -89,7 +98,20 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     void update() {
-        player.update();
+
+        if (gameState == playState) {
+            // player
+            player.update();
+            // NPC
+            for (int i = 0; i < Npc.length; i++) {
+                if (Npc[i] != null) {
+                    Npc[i].update();
+                }
+            }
+        }
+        if (gameState == pauseState) {
+            // wala
+        }
 
     }
 
@@ -98,6 +120,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         // TILE
+        long drawStart = 0;
+        if (keyH.checkDraw == true) {
+            drawStart = System.nanoTime();
+        }
+
         tileM.draw(g2);
 
         // OBJECT
@@ -107,11 +134,26 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
+        // NPC
+        for (int i = 0; i < Npc.length; i++) {
+            if (Npc[i] != null) {
+                Npc[i].draw(g2);
+            }
+        }
+
         // PLAYER
         player.draw(g2);
 
         // UI
         ui.draw(g2);
+
+        // DEBUG
+        if (keyH.checkDraw == true) {
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+            g2.setColor(Color.black);
+            g2.drawString("Draw time" + passed, 10, 400);
+        }
 
         g2.dispose();
     }
