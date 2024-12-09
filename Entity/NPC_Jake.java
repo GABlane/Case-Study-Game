@@ -12,6 +12,7 @@ public class NPC_Jake extends Entity {
         direnction = "down";
         speed = 2;
         getImage();
+        setDialogue();
     }
 
     @Override
@@ -23,6 +24,15 @@ public class NPC_Jake extends Entity {
         left2 = setup("/NPC/jake-left-2");
         right1 = setup("/NPC/jake-right-1");
         right2 = setup("/NPC/jake-right-2");
+
+    }
+
+    public void setDialogue() {
+
+        dialogues[0] = "Hello, my nigga.";
+        dialogues[1] = "So you've come to this island to \nfind the treasure?";
+        dialogues[2] = "I used to be a great nigga but now... \nI'm a bit too old for taking an adventure.";
+        dialogues[3] = "Well, goodluck on you.";
 
     }
 
@@ -48,5 +58,10 @@ public class NPC_Jake extends Entity {
             actionLockCOunter = 0;
         }
 
+    }
+
+    public void speak() {
+
+        super.speak();
     }
 }
