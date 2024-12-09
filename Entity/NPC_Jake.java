@@ -61,7 +61,6 @@ public class NPC_Jake extends Entity {
     }
 
     public void speak() {
-
         super.speak();
     }
 }
