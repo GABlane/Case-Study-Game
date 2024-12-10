@@ -11,6 +11,7 @@ public class AssetSetter {
     }
 
     public void setObject() {
+
     }
 
     public void setNPC() {
