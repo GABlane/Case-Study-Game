@@ -128,12 +128,12 @@ public class GamePanel extends JPanel implements Runnable {
             drawStart = System.nanoTime();
         }
 
-        //title
-        if(gameState == titleState){
+        // title
+        if (gameState == titleState) {
             ui.draw(g2);
         }
-        //others
-        else{
+        // others
+        else {
             tileM.draw(g2);
 
             // OBJECT
@@ -154,9 +154,8 @@ public class GamePanel extends JPanel implements Runnable {
             player.draw(g2);
 
             // UI
-            ui.draw(g2);              
+            ui.draw(g2);
         }
-
 
         // DEBUG
         if (keyH.checkDraw == true) {

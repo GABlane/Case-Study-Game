@@ -40,8 +40,8 @@ public class Player extends Entity {
         worldY = gp.tileSize * 24;
         speed = 5;
         direnction = "down";
-    
-        //player status
+
+        // player status
         maxLife = 6;
         life = maxLife;
     }
@@ -88,6 +88,9 @@ public class Player extends Entity {
 
             int npcIndex = gp.cChecker.checkEntity(this, gp.Npc);
             interactNPC(npcIndex);
+
+            // event checker
+            gp.eHandler.checkEvent();
 
             if (collisionOn == false) {
                 switch (direnction) {
