@@ -40,6 +40,10 @@ public class Player extends Entity {
         worldY = gp.tileSize * 24;
         speed = 5;
         direnction = "down";
+    
+        //player status
+        maxLife = 6;
+        life = maxLife;
     }
 
     @Override

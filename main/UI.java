@@ -3,13 +3,17 @@ package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 //import java.text.DecimalFormat;
 import java.awt.BasicStroke;
+import Obj.OBJ_Heart;
+import Obj.SuperObj;
 
 public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40, arial_80B;
+    BufferedImage Full_Heart, Half_Heart, Empty_Heart;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -25,7 +29,12 @@ public class UI {
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-        
+     
+        //create hud object
+        SuperObj heart = new OBJ_Heart(gp);
+        Full_Heart = heart.image;
+        Half_Heart = heart.image2;
+        Empty_Heart = heart.image3;
     }
 
     public void showMessage(String text) {
@@ -46,16 +55,49 @@ public class UI {
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
-            // later
+            drawPlayerLife();
         }
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
         }
         // DIAGLOGUE STATE
         if (gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawDialogueScreen();
         }
+    }
+    public void drawPlayerLife(){
+
+        gp.player.life = 2;
+
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+
+        //draw max life
+        while(i < gp.player.maxLife/2){
+            g2.drawImage(Empty_Heart, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        //reset
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+
+        //draw curret life
+        while(i < gp.player.life){
+            g2.drawImage(Half_Heart, x, y, null);
+            i++;
+            if(i < gp.player.life){
+                g2.drawImage(Full_Heart, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
+
     }
     public void drawTitleScreen(){
 
