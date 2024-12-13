@@ -2,6 +2,7 @@ package main;
 
 import Entity.NPC_Jake;
 import Obj.OBJ_DOOR;
+import monster.MON_Gunther;
 
 public class AssetSetter {
 
@@ -24,5 +25,15 @@ public class AssetSetter {
         gp.Npc[0].worldX = gp.tileSize * 27;
         gp.Npc[0].worldY = gp.tileSize * 22;
 
+    }
+
+    public void setMonster() {
+        gp.monster[0] = new MON_Gunther(gp);
+        gp.monster[0].worldX = gp.tileSize * 40;
+        gp.monster[0].worldY = gp.tileSize * 13;
+
+        gp.monster[1] = new MON_Gunther(gp);
+        gp.monster[1].worldX = gp.tileSize * 41;
+        gp.monster[1].worldY = gp.tileSize * 13;
     }
 }

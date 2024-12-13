@@ -29,6 +29,8 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCOunter = 0;
+    public boolean invisible = false;
+    public int invisibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
@@ -39,6 +41,8 @@ public class Entity {
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
+
+    public int type;
 
     // abstractions
     public Entity(GamePanel gp) {
@@ -80,7 +84,16 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.Npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if (this.type == 2 && contactPlayer == true) {
+            if (gp.player.invisible == false) {
+                gp.player.life -= 1;
+                gp.player.invisible = true;
+            }
+        }
         if (collisionOn == false) {
             switch (direction) {
                 case "up":
@@ -125,7 +138,6 @@ public class Entity {
     }
 
     public void getImage() {
-        up = setup("/player/up");
         up = setup("/player/up");
         down = setup("/player/down");
         left1 = setup("/player/left1");

@@ -1,5 +1,6 @@
 package Entity;
 
+import java.awt.AlphaComposite;
 // import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -89,6 +90,9 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.Npc);
             interactNPC(npcIndex);
 
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             // event checker
             gp.eHandler.checkEvent();
 
@@ -122,6 +126,13 @@ public class Player extends Entity {
             }
         }
 
+        if (invisible == true) {
+            invisibleCounter++;
+            if (invisibleCounter == 90) {
+                invisible = false;
+                invisibleCounter = 0;
+            }
+        }
     }
 
     // object
@@ -142,6 +153,16 @@ public class Player extends Entity {
 
         }
         gp.keyH.enterPressed = false;
+    }
+
+    public void contactMonster(int i) {
+
+        if (i != 999) {
+            if (invisible == false) {
+                life -= 1;
+                invisible = true;
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {
@@ -171,9 +192,21 @@ public class Player extends Entity {
                 }
                 break;
         }
+
+        if (invisible == true) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, screenX, screenY, null);
+
+        // reset oppacity
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         // g2.setColor(Color.white);
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
+        // g2.setFont(new Font("Arial", Font.PLAIN, 20));
+        // g2.setColor(Color.black);
+        // g2.drawString("invinsible counter:" + invisibleCounter, 400, 400);
     }
 }
