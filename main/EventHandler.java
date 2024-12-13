@@ -42,9 +42,9 @@ public class EventHandler {
 
         if (canTouchEvent) {
 
-            if (hit(26, 35, "any") == true) {
+            if (hit(23, 35, "any") == true) {
                 // event happen
-                damagePit(26, 35, gp.dialogueState);
+                damagePit(23, 35, gp.dialogueState);
             }
         }
 
@@ -59,7 +59,7 @@ public class EventHandler {
         eventRect[col][row].y = row * gp.tileSize + eventRect[col][row].y;
 
         if (gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
-            if (gp.player.direnction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+            if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
 
                 previousEventX = gp.player.worldX;

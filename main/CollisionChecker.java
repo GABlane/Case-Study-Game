@@ -22,7 +22,7 @@ public class CollisionChecker {
 
         int tileNum1, tileNum2;
 
-        switch (entity.direnction) {
+        switch (entity.direction) {
             case "up":
                 entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
                 tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
@@ -75,7 +75,7 @@ public class CollisionChecker {
                 gp.obj[i].solidArea.x = gp.obj[i].worldX + gp.obj[i].solidArea.x;
                 gp.obj[i].solidArea.y = gp.obj[i].worldY + gp.obj[i].solidArea.y;
 
-                switch (entity.direnction) {
+                switch (entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         // automatically check if the two rectangles are touching or not
@@ -145,7 +145,7 @@ public class CollisionChecker {
                 target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
                 target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
 
-                switch (entity.direnction) {
+                switch (entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         // automatically check if the two rectangles are touching or not
@@ -196,7 +196,7 @@ public class CollisionChecker {
         gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
         gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 
-        switch (entity.direnction) {
+        switch (entity.direction) {
             case "up":
                 entity.solidArea.y -= entity.speed;
                 // automatically check if the two rectangles are touching or not

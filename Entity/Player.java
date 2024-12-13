@@ -39,7 +39,7 @@ public class Player extends Entity {
         worldX = gp.tileSize * 26;
         worldY = gp.tileSize * 24;
         speed = 5;
-        direnction = "down";
+        direction = "down";
 
         // player status
         maxLife = 6;
@@ -64,16 +64,16 @@ public class Player extends Entity {
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
                 || keyH.rightPressed == true) {
             if (keyH.upPressed == true) {
-                direnction = "up";
+                direction = "up";
             }
             if (keyH.downPressed == true) {
-                direnction = "down";
+                direction = "down";
             }
             if (keyH.rightPressed == true) {
-                direnction = "right";
+                direction = "right";
             }
             if (keyH.leftPressed == true) {
-                direnction = "left";
+                direction = "left";
             }
 
             trapSeconds++;
@@ -93,7 +93,7 @@ public class Player extends Entity {
             gp.eHandler.checkEvent();
 
             if (collisionOn == false) {
-                switch (direnction) {
+                switch (direction) {
                     case "up":
                         worldY -= speed;
                         break;
@@ -147,7 +147,7 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 
-        switch (direnction) {
+        switch (direction) {
             case "up":
                 image = up;
                 break;

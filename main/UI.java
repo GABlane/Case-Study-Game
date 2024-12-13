@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import Entity.Entity;
+
 //import java.text.DecimalFormat;
 import java.awt.BasicStroke;
 import Obj.OBJ_Heart;
-import Obj.SuperObj;
 
 public class UI {
     GamePanel gp;
@@ -29,7 +31,7 @@ public class UI {
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
         // create hud object
-        SuperObj heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         Full_Heart = heart.image;
         Half_Heart = heart.image2;
         Empty_Heart = heart.image3;

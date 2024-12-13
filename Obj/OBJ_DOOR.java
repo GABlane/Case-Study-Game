@@ -1,24 +1,22 @@
 package Obj;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import Entity.Entity;
 import main.GamePanel;
 
-public class OBJ_DOOR extends SuperObj {
-    GamePanel gp;
+public class OBJ_DOOR extends Entity {
 
     public OBJ_DOOR(GamePanel gp) {
-        name = "Door";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/Objects/door.png")); // lalagay pako ng sword ni
-                                                                                           // finn
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        super(gp);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        name = "Door";
+        down = setup("/Objects/door");
         collision = true;
+
+        solidArea.x = 0;
+        solidArea.y = 16;
+        solidArea.width = 48;
+        solidArea.height = 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 }

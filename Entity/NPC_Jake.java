@@ -9,7 +9,7 @@ public class NPC_Jake extends Entity {
     public NPC_Jake(GamePanel gp) {
         super(gp);
 
-        direnction = "down";
+        direction = "down";
         speed = 2;
         getImage();
         setDialogue();
@@ -45,14 +45,14 @@ public class NPC_Jake extends Entity {
             int i = random.nextInt(100) + 1;
 
             if (i <= 25) {
-                direnction = "up";
+                direction = "up";
             } else if (i >= 25 && i <= 50) {
-                direnction = "down";
+                direction = "down";
             } else if (i >= 50 && i <= 75) {
-                direnction = "left";
+                direction = "left";
 
             } else if (i >= 75 && i <= 100) {
-                direnction = "right";
+                direction = "right";
 
             }
             actionLockCOunter = 0;

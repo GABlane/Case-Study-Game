@@ -18,7 +18,7 @@ public class Entity {
     public int speed;
 
     public BufferedImage up, down, left1, left2, right1, right2;
-    public String direnction;
+    public String direction = "down";
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -32,10 +32,13 @@ public class Entity {
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
-    //charac status
+    // charac status
     public int maxLife;
     public int life;
 
+    public BufferedImage image, image2, image3;
+    public String name;
+    public boolean collision = false;
 
     // abstractions
     public Entity(GamePanel gp) {
@@ -54,18 +57,18 @@ public class Entity {
         gp.ui.currentDialogue = dialogues[dialogueIndex];
         dialogueIndex++;
 
-        switch (gp.player.direnction) {
+        switch (gp.player.direction) {
             case "up":
-                direnction = "down";
+                direction = "down";
                 break;
             case "down":
-                direnction = "up";
+                direction = "up";
                 break;
             case "left":
-                direnction = "right";
+                direction = "right";
                 break;
             case "right":
-                direnction = "left";
+                direction = "left";
                 break;
 
         }
@@ -79,7 +82,7 @@ public class Entity {
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkPlayer(this);
         if (collisionOn == false) {
-            switch (direnction) {
+            switch (direction) {
                 case "up":
                     worldY -= speed;
                     break;
@@ -141,7 +144,7 @@ public class Entity {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-            switch (direnction) {
+            switch (direction) {
                 case "up":
                     image = up;
                     break;
