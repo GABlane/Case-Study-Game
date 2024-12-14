@@ -54,33 +54,32 @@ public class Player extends Entity {
     @Override
     public void getImage() {
 
-        up = setup("/player/up", gp.tileSize,gp.tileSize);
-        down = setup("/player/down", gp.tileSize,gp.tileSize);
-        left1 = setup("/player/left1", gp.tileSize,gp.tileSize);
-        left2 = setup("/player/left2", gp.tileSize,gp.tileSize);
-        right1 = setup("/player/right1", gp.tileSize,gp.tileSize);
-        right2 = setup("/player/right2", gp.tileSize,gp.tileSize);
+        up = setup("/player/up", gp.tileSize, gp.tileSize);
+        down = setup("/player/down", gp.tileSize, gp.tileSize);
+        left1 = setup("/player/left1", gp.tileSize, gp.tileSize);
+        left2 = setup("/player/left2", gp.tileSize, gp.tileSize);
+        right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
+        right2 = setup("/player/right2", gp.tileSize, gp.tileSize);
 
     }
 
-    public void playerAttackImage(){
-        attackUp1 = setup("/player/attack_up1", gp.tileSize,gp.tileSize*2);
-        attackUp2 = setup("/player/attack_up2", gp.tileSize,gp.tileSize*2);
-        attackDown1 = setup("/player/attack_down1", gp.tileSize,gp.tileSize*2);
-         attackDown2 = setup("/player/attack_down2", gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setup("/player/attack_left1", gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setup("/player/attack_left2", gp.tileSize*2,gp.tileSize);
-        attackRight1 = setup("/player/attack_right1", gp.tileSize*2,gp.tileSize);
-        attackRight2 = setup("/player/attack_right2", gp.tileSize*2,gp.tileSize);
+    public void playerAttackImage() {
+        attackUp1 = setup("/player/attack_up1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/player/attack_up2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("/player/attack_down1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("/player/attack_down2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("/player/attack_left1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("/player/attack_left2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("/player/attack_right1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("/player/attack_right2", gp.tileSize * 2, gp.tileSize);
     }
 
     @Override
     public void update() {
 
-        if(attacking == true){
+        if (attacking == true) {
             attacking();
-        }
-        else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
+        } else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
                 || keyH.rightPressed == true || keyH.enterPressed == true) {
             if (keyH.upPressed == true) {
                 direction = "up";
@@ -155,44 +154,52 @@ public class Player extends Entity {
         }
     }
 
-    public void attacking(){
+    public void attacking() {
         spriteCounter++;
 
-        if(spriteCounter <=5) {
+        if (spriteCounter <= 5) {
             spriteNum = 1;
         }
-        if(spriteCounter > 5 && spriteCounter <= 25) {
+        if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
 
-//save the current worldX, WorldY, solidArea
+            // save the current worldX, WorldY, solidArea
             int currentWorldX = worldX;
             int currentWorldY = worldY;
             int solidAreaWidth = solidArea.width;
-            int solidAreaHeight= solidArea.height;
+            int solidAreaHeight = solidArea.height;
 
- //adjust player world/y for the attackArea 
-           switch (direction) {
-            case "up": worldY -= attackArea.height; break;
-            case "down": worldY += attackArea.width; break;
-            case "left": worldX -= attackArea.width; break;
-            case "right": worldX += attackArea.width; break;
-           }
+            // adjust player world/y for the attackArea
+            switch (direction) {
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
+                case "down":
+                    worldY += attackArea.width;
+                    break;
+                case "left":
+                    worldX -= attackArea.width;
+                    break;
+                case "right":
+                    worldX += attackArea.width;
+                    break;
+            }
 
-//attackArea becomes solidArea
-           solidArea.width = attackArea.width;
-           solidArea.height = attackArea.height;
+            // attackArea becomes solidArea
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
 
-//check monster collision
-           int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-           damageMonster(monsterIndex);
+            // check monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            damageMonster(monsterIndex);
 
-//after checking collision, restore the original data
-           worldX = currentWorldX;
-           worldY= currentWorldY;
-           solidArea.width = solidAreaWidth;
-           solidArea.height = solidAreaHeight;
+            // after checking collision, restore the original data
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
         }
-        if(spriteCounter > 25 ){
+        if (spriteCounter > 25) {
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
@@ -209,17 +216,16 @@ public class Player extends Entity {
     // npc
     public void interactNPC(int i) {
 
-        if(gp.keyH.enterPressed == true){
-            if (i != 999) {       
-                    gp.gameState = gp.dialogueState;
-                    gp.Npc[i].speak();
-            }
-            else{
-                    attacking = true;
+        if (gp.keyH.enterPressed == true) {
+            if (i != 999) {
+                gp.gameState = gp.dialogueState;
+                gp.Npc[i].speak();
+            } else {
+                attacking = true;
             }
             gp.keyH.enterPressed = false;
-          }
         }
+    }
 
     public void contactMonster(int i) {
 
@@ -230,20 +236,18 @@ public class Player extends Entity {
             }
         }
     }
+
     public void damageMonster(int i) {
         if (i != 999) {
+
             if (gp.monster[i].invisible == false) {
-                System.out.println("Sapul si kalbo");
                 gp.monster[i].life -= 1;
                 gp.monster[i].invisible = true;
-    
+
                 if (gp.monster[i].life <= 0) {
-                    System.out.println("Monster is dead!");
                     gp.monster[i] = null;
                 }
-            } 
-        } else {
-            System.out.println("duling ka kalbo!");
+            }
         }
     }
 
@@ -254,44 +258,72 @@ public class Player extends Entity {
 
         switch (direction) {
             case "up":
-            if (attacking == false) {
-                if (spriteNum == 1) {image = up;}
-             }
-             if (attacking == true) {
-                tempScreenY = screenY - gp.tileSize;
-                if (spriteNum == 1) {image = attackUp1;}
-                if (spriteNum == 2) {image = attackUp2;}
-             }
+                if (attacking == false) {
+                    if (spriteNum == 1) {
+                        image = up;
+                    }
+                }
+                if (attacking == true) {
+                    tempScreenY = screenY - gp.tileSize;
+                    if (spriteNum == 1) {
+                        image = attackUp1;
+                    }
+                    if (spriteNum == 2) {
+                        image = attackUp2;
+                    }
+                }
                 break;
             case "down":
-            if (attacking == false) {
-                if (spriteNum == 1) {image = down;}
-             }
-             if (attacking == true) {
-                if (spriteNum == 1) {image = attackDown1;}
-                if (spriteNum == 2) {image = attackDown2;}
-             }
+                if (attacking == false) {
+                    if (spriteNum == 1) {
+                        image = down;
+                    }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) {
+                        image = attackDown1;
+                    }
+                    if (spriteNum == 2) {
+                        image = attackDown2;
+                    }
+                }
                 break;
             case "left":
-            if (attacking == false) {
-                if (spriteNum == 1) {image = left1;}
-                if (spriteNum == 2) {image = left2;}
-             }
-             if (attacking == true) {
-                tempScreenX = screenX - gp.tileSize;
-                if (spriteNum == 1) {image = attackLeft1;}
-                if (spriteNum == 2) {image = attackLeft2;}
-             }
+                if (attacking == false) {
+                    if (spriteNum == 1) {
+                        image = left1;
+                    }
+                    if (spriteNum == 2) {
+                        image = left2;
+                    }
+                }
+                if (attacking == true) {
+                    tempScreenX = screenX - gp.tileSize;
+                    if (spriteNum == 1) {
+                        image = attackLeft1;
+                    }
+                    if (spriteNum == 2) {
+                        image = attackLeft2;
+                    }
+                }
                 break;
             case "right":
-            if (attacking == false) {
-                if (spriteNum == 1) {image = right1;}
-                if (spriteNum == 2) { image = right2;}
-             }
-             if (attacking == true) {
-                if (spriteNum == 1) {image = attackRight1;}
-                if (spriteNum == 2) {image = attackRight2;}
-             }
+                if (attacking == false) {
+                    if (spriteNum == 1) {
+                        image = right1;
+                    }
+                    if (spriteNum == 2) {
+                        image = right2;
+                    }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) {
+                        image = attackRight1;
+                    }
+                    if (spriteNum == 2) {
+                        image = attackRight2;
+                    }
+                }
                 break;
         }
 

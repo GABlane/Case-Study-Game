@@ -20,8 +20,8 @@ public class Entity {
 
     public BufferedImage up, down, left1, left2, right1, right2;
 
-    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
-    attackLeft1, attackLeft2, attackRight1, attackRight2;
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
+            attackLeft1, attackLeft2, attackRight1, attackRight2;
     boolean attacking = false;
 
     public BufferedImage image, image2, image3;
@@ -33,7 +33,7 @@ public class Entity {
     public int trapSeconds = 0;
 
     public Rectangle solidArea = new Rectangle(0, 0, 40, 40);
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCOunter = 0;
@@ -129,6 +129,14 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        if (invisible == true) {
+            invisibleCounter++;
+            if (invisibleCounter == 90) {
+                invisible = false;
+                invisibleCounter = 0;
+            }
+        }
     }
 
     public BufferedImage setup(String Path, int width, int height) {
@@ -145,12 +153,12 @@ public class Entity {
     }
 
     public void getImage() {
-        up = setup("/player/up",gp.tileSize,gp.tileSize);
-        down = setup("/player/down", gp.tileSize,gp.tileSize);
-        left1 = setup("/player/left1", gp.tileSize,gp.tileSize);
-        left2 = setup("/player/left2", gp.tileSize,gp.tileSize);
-        right1 = setup("/player/right1", gp.tileSize,gp.tileSize);
-        right2 = setup("/player/right2", gp.tileSize,gp.tileSize);
+        up = setup("/player/up", gp.tileSize, gp.tileSize);
+        down = setup("/player/down", gp.tileSize, gp.tileSize);
+        left1 = setup("/player/left1", gp.tileSize, gp.tileSize);
+        left2 = setup("/player/left2", gp.tileSize, gp.tileSize);
+        right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
+        right2 = setup("/player/right2", gp.tileSize, gp.tileSize);
 
     }
 
