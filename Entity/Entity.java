@@ -18,7 +18,7 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-    public BufferedImage up, down, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
             attackLeft1, attackLeft2, attackRight1, attackRight2;
@@ -153,8 +153,10 @@ public class Entity {
     }
 
     public void getImage() {
-        up = setup("/player/up", gp.tileSize, gp.tileSize);
-        down = setup("/player/down", gp.tileSize, gp.tileSize);
+        up1 = setup("/player/up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/player/up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/player/down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/player/down2", gp.tileSize, gp.tileSize);
         left1 = setup("/player/left1", gp.tileSize, gp.tileSize);
         left2 = setup("/player/left2", gp.tileSize, gp.tileSize);
         right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
@@ -173,10 +175,20 @@ public class Entity {
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
             switch (direction) {
                 case "up":
-                    image = up;
+                    if (spriteNum == 1) {
+                        image = up1;
+                    }
+                    if (spriteNum == 2) {
+                        image = up2;
+                    }
                     break;
                 case "down":
-                    image = down;
+                    if (spriteNum == 1) {
+                        image = down1;
+                    }
+                    if (spriteNum == 2) {
+                        image = down2;
+                    }
                     break;
                 case "left":
                     if (spriteNum == 1) {

@@ -54,8 +54,10 @@ public class Player extends Entity {
     @Override
     public void getImage() {
 
-        up = setup("/player/up", gp.tileSize, gp.tileSize);
-        down = setup("/player/down", gp.tileSize, gp.tileSize);
+        up1 = setup("/player/up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/player/up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/player/down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/player/down2", gp.tileSize, gp.tileSize);
         left1 = setup("/player/left1", gp.tileSize, gp.tileSize);
         left2 = setup("/player/left2", gp.tileSize, gp.tileSize);
         right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
@@ -260,7 +262,10 @@ public class Player extends Entity {
             case "up":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = up;
+                        image = up1;
+                    }
+                    if (spriteNum == 2) {
+                        image = up2;
                     }
                 }
                 if (attacking == true) {
@@ -276,7 +281,10 @@ public class Player extends Entity {
             case "down":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = down;
+                        image = down1;
+                    }
+                    if (spriteNum == 2) {
+                        image = down2;
                     }
                 }
                 if (attacking == true) {

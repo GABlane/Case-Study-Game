@@ -9,7 +9,7 @@ public class OBJ_Hole extends Entity {
         super(gp);
         name = "Hole";
 
-        down = setup("/Objects/Hole", gp.tileSize,gp.tileSize);
+        down1 = setup("/Objects/Hole", gp.tileSize, gp.tileSize);
 
     }
 }
