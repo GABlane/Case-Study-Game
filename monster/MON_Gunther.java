@@ -1,13 +1,15 @@
 package monster;
 
 import java.util.Random;
-
 import Entity.Entity;
 import main.GamePanel;
 
 public class MON_Gunther extends Entity {
+    GamePanel gp;
     public MON_Gunther(GamePanel gp) {
         super(gp);
+
+        this.gp = gp;
 
         type = 2;
 
@@ -28,12 +30,12 @@ public class MON_Gunther extends Entity {
 
     @Override
     public void getImage() {
-        up = setup("/monster/Gunter-up");
-        down = setup("/monster/Gunter-down");
-        left1 = setup("/monster/Gunter-left1");
-        left2 = setup("/monster/Gunter-left2");
-        right1 = setup("/monster/Gunter-right1");
-        right2 = setup("/monster/Gunter-right2");
+        up = setup("/monster/Gunter-up", gp.tileSize,gp.tileSize);
+        down = setup("/monster/Gunter-down", gp.tileSize,gp.tileSize);
+        left1 = setup("/monster/Gunter-left1", gp.tileSize,gp.tileSize);
+        left2 = setup("/monster/Gunter-left2", gp.tileSize,gp.tileSize);
+        right1 = setup("/monster/Gunter-right1", gp.tileSize,gp.tileSize);
+        right2 = setup("/monster/Gunter-right2", gp.tileSize,gp.tileSize);
     }
 
     public void setAction() {

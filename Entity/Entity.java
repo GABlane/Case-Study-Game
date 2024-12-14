@@ -1,5 +1,6 @@
 package Entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,12 @@ public class Entity {
     public int speed;
 
     public BufferedImage up, down, left1, left2, right1, right2;
+
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
+    attackLeft1, attackLeft2, attackRight1, attackRight2;
+    boolean attacking = false;
+
+    public BufferedImage image, image2, image3;
     public String direction = "down";
 
     public int spriteCounter = 0;
@@ -26,6 +33,7 @@ public class Entity {
     public int trapSeconds = 0;
 
     public Rectangle solidArea = new Rectangle(0, 0, 40, 40);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCOunter = 0;
@@ -38,7 +46,6 @@ public class Entity {
     public int maxLife;
     public int life;
 
-    public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
 
@@ -124,13 +131,13 @@ public class Entity {
         }
     }
 
-    public BufferedImage setup(String Path) {
+    public BufferedImage setup(String Path, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/res" + Path + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,12 +145,12 @@ public class Entity {
     }
 
     public void getImage() {
-        up = setup("/player/up");
-        down = setup("/player/down");
-        left1 = setup("/player/left1");
-        left2 = setup("/player/left2");
-        right1 = setup("/player/right1");
-        right2 = setup("/player/right2");
+        up = setup("/player/up",gp.tileSize,gp.tileSize);
+        down = setup("/player/down", gp.tileSize,gp.tileSize);
+        left1 = setup("/player/left1", gp.tileSize,gp.tileSize);
+        left2 = setup("/player/left2", gp.tileSize,gp.tileSize);
+        right1 = setup("/player/right1", gp.tileSize,gp.tileSize);
+        right2 = setup("/player/right2", gp.tileSize,gp.tileSize);
 
     }
 
@@ -181,7 +188,13 @@ public class Entity {
                     break;
             }
 
+            if (invisible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            }
+
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
 }
