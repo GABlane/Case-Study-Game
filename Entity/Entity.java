@@ -142,7 +142,7 @@ public class Entity {
 
         if (invisible == true) {
             invisibleCounter++;
-            if (invisibleCounter == 90) {
+            if (invisibleCounter == 60) {
                 invisible = false;
                 invisibleCounter = 0;
             }
@@ -243,13 +243,12 @@ public class Entity {
                 hpBarcounter = 0;
                 changeAlpha(g2, 0.4f);
             }
-            if (dying = true) {
+            if (dying == true) {
                 dyingAnimation(g2);
             }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-            changeAlpha(g2, 0.4f);
         }
     }
 

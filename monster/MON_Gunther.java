@@ -7,7 +7,6 @@ import main.GamePanel;
 public class MON_Gunther extends Entity {
     GamePanel gp;
 
-
     public MON_Gunther(GamePanel gp) {
         super(gp);
 
@@ -64,7 +63,6 @@ public class MON_Gunther extends Entity {
     }
 
     public void damageReaction() {
-
         actionLockCOunter = 0;
         direction = gp.player.direction;
     }
