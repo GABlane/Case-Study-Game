@@ -82,7 +82,7 @@ public class Player extends Entity {
         if (attacking == true) {
             attacking();
         } else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
-                || keyH.rightPressed == true || keyH.enterPressed == true) {
+                || keyH.rightPressed == true || keyH.enterPressed == true /* || keyH.enterPressed = true */ ) {
             if (keyH.upPressed == true) {
                 direction = "up";
             }
@@ -103,12 +103,15 @@ public class Player extends Entity {
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            // check tile collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            // check npc collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.Npc);
             interactNPC(npcIndex);
 
+            // check monster collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
@@ -223,6 +226,7 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.Npc[i].speak();
             } else {
+                /* gp.playSE(1); */
                 attacking = true;
             }
             gp.keyH.enterPressed = false;
@@ -233,6 +237,7 @@ public class Player extends Entity {
 
         if (i != 999) {
             if (invisible == false) {
+                /* gp.playSE(2); */
                 life -= 1;
                 invisible = true;
             }
@@ -243,11 +248,14 @@ public class Player extends Entity {
         if (i != 999) {
 
             if (gp.monster[i].invisible == false) {
+
+                /* gp.playSE(3); */
                 gp.monster[i].life -= 1;
                 gp.monster[i].invisible = true;
+                gp.monster[i].damageReaction();
 
                 if (gp.monster[i].life <= 0) {
-                    gp.monster[i] = null;
+                    gp.monster[i].dying = true;
                 }
             }
         }
