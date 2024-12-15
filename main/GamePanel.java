@@ -224,4 +224,8 @@ public class GamePanel extends JPanel implements Runnable {
         SFX.play();
     }
 
+    public void playSE(int i) {
+        SFX.setFile(i);
+        SFX.play();
+    }
 }
