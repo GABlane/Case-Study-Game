@@ -7,6 +7,7 @@ import main.GamePanel;
 public class MON_Gunther extends Entity {
     GamePanel gp;
 
+
     public MON_Gunther(GamePanel gp) {
         super(gp);
 
@@ -16,7 +17,7 @@ public class MON_Gunther extends Entity {
 
         name = "Gunter";
         speed = 1;
-        maxLife = 4;
+        maxLife = 20;
         life = maxLife;
 
         solidArea.x = 3;
@@ -60,5 +61,11 @@ public class MON_Gunther extends Entity {
             }
             actionLockCOunter = 0;
         }
+    }
+
+    public void damageReaction() {
+
+        actionLockCOunter = 0;
+        direction = gp.player.direction;
     }
 }
