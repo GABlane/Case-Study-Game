@@ -223,10 +223,11 @@ public class Player extends Entity {
 
         if (gp.keyH.enterPressed == true) {
             if (i != 999) {
+                gp.playSE(4);
                 gp.gameState = gp.dialogueState;
                 gp.Npc[i].speak();
             } else {
-                /* gp.playSE(1); */
+                gp.playSE(3);
                 attacking = true;
             }
             gp.keyH.enterPressed = false;
@@ -237,7 +238,7 @@ public class Player extends Entity {
 
         if (i != 999) {
             if (invisible == false) {
-                /* gp.playSE(2); */
+                gp.playerSE(2);
                 life -= 1;
                 invisible = true;
             }
@@ -249,7 +250,7 @@ public class Player extends Entity {
 
             if (gp.monster[i].invisible == false) {
 
-                /* gp.playSE(3); */
+                gp.playSE(1);
                 gp.monster[i].life -= 1;
                 gp.monster[i].invisible = true;
                 gp.monster[i].damageReaction();

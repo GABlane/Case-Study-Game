@@ -162,6 +162,21 @@ public class Entity {
         return image;
     }
 
+    public String getOppositeDirection(String currentDirection) {
+        switch (currentDirection) {
+            case "up":
+                return "down";
+            case "down":
+                return "up";
+            case "left":
+                return "right";
+            case "right":
+                return "left";
+            default:
+                return currentDirection;
+        }
+    }
+
     public void getImage() {
         up1 = setup("/player/up1", gp.tileSize, gp.tileSize);
         up2 = setup("/player/up2", gp.tileSize, gp.tileSize);
@@ -243,13 +258,12 @@ public class Entity {
                 hpBarcounter = 0;
                 changeAlpha(g2, 0.4f);
             }
-            if (dying = true) {
+            if (dying == true) {
                 dyingAnimation(g2);
             }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-            changeAlpha(g2, 0.4f);
         }
     }
 
