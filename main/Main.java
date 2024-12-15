@@ -4,6 +4,9 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        // This is the first batch, I'll work with this for this is the scope of our
+        // case study
+
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
