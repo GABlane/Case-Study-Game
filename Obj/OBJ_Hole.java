@@ -10,6 +10,7 @@ public class OBJ_Hole extends Entity {
         name = "Hole";
 
         down1 = setup("/Objects/Hole", gp.tileSize, gp.tileSize);
+        description = "[ " + name + " ]";
 
     }
 }

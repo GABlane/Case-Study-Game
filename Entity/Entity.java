@@ -48,6 +48,21 @@ public class Entity {
     public String name;
     public boolean collision = false;
     public int type;
+    public int level;
+    public int strength;
+    public int attack;
+    public int defense;
+    public int nextLvlExp;
+    public int exp;
+    public int coin;
+    public int dexterity;
+    public Entity currentWeapon;
+    public Entity currentShield;
+
+    // episode 28
+    public int attackValue;
+    public int defenseValue;
+    public String description = "";
 
     // episode24
     public boolean alive = true;
@@ -107,7 +122,12 @@ public class Entity {
             if (gp.player.invisible == false) {
                 // we can give damage(alisin comment nyang code sa baba kapag may sound na )
                 /* gp.playSE(4); */
-                gp.player.life -= 1;
+                int damage = attack - gp.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                gp.player.life -= damage;
                 gp.player.invisible = true;
             }
         }

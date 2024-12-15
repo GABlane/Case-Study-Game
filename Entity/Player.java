@@ -5,7 +5,11 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
+import Obj.OBJ_Key;
+import Obj.OBJ_Shield_Normal;
+import Obj.OBJ_Sword_Normal;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -16,21 +20,24 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     // public int hasKey = 0;
-
-    int nspeed = 5;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH) {
-
         super(gp);
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
-        solidArea = new Rectangle(8, 16, gp.tileSize - 10, gp.tileSize - 10);
+        solidArea = new Rectangle();
 
+        solidArea.x = 8;
+        solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         attackArea.width = 36;
         attackArea.height = 36;
@@ -38,9 +45,21 @@ public class Player extends Entity {
         setDefaultValues();
         getImage();
         playerAttackImage();
+        setItem();
+    }
+
+    public void setItem() {
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
     }
 
     void setDefaultValues() {
+        name = "finn";
         worldX = gp.tileSize * 26;
         worldY = gp.tileSize * 24;
         speed = 5;
@@ -49,6 +68,25 @@ public class Player extends Entity {
         // player status
         maxLife = 6;
         life = maxLife;
+        level = 1;
+        dexterity = 1;
+        strength = 1;
+        exp = 0;
+        nextLvlExp = 5;
+        coin = 0;
+        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentShield = new OBJ_Shield_Normal(gp);
+        attack = getAttack();
+        defense = getDefense();
+    }
+
+    // the more attack in weapon or the more attack in shield enhances the stats
+    public int getAttack() {
+        return attack = strength * currentWeapon.attackValue;
+    }
+
+    public int getDefense() {
+        return defense = dexterity * currentShield.defenseValue;
     }
 
     @Override
@@ -239,7 +277,12 @@ public class Player extends Entity {
         if (i != 999) {
             if (invisible == false) {
                 gp.playerSE(2);
-                life -= 1;
+                int damage = attack - gp.monster[i].attack - defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                life -= damage;
                 invisible = true;
             }
         }
@@ -250,16 +293,43 @@ public class Player extends Entity {
 
             if (gp.monster[i].invisible == false) {
 
+                int damage = attack - gp.monster[i].defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
                 gp.playSE(1);
-                gp.monster[i].life -= 1;
+                gp.monster[i].life -= damage;
+                gp.ui.addMessage(damage + " damage dealt");
+
                 gp.monster[i].invisible = true;
                 gp.monster[i].damageReaction();
 
                 if (gp.monster[i].life <= 0) {
                     gp.monster[i].dying = true;
+                    gp.ui.addMessage("killed the " + gp.monster[i].name + " !");
+                    exp += gp.monster[i].exp;
+                    gp.ui.addMessage("Gained " + gp.monster[i].exp + " EXP");
+                    checkLevel();
                 }
             }
         }
+    }
+
+    public void checkLevel() {
+        if (exp >= nextLvlExp) {
+            level++;
+            nextLvlExp = nextLvlExp * 2;
+            maxLife += 2;
+            strength++;
+            dexterity++;
+            defense = getDefense();
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "You're level " + level;
+            gp.aSetter.setMonster();
+            life = maxLife;
+        }
+
     }
 
     public void draw(Graphics2D g2) {
