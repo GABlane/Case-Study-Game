@@ -13,6 +13,13 @@ public class Sound {
 
     public Sound() {
         soundURL[0] = getClass().getResource("/res/Sound/Adventure.wav");
+        // palagyan sound
+        /*
+         * soundURL[0] = getClass().getResource("/res/Sound/Adventure.wav");
+         * soundURL[1] = getClass().getResource("/res/Sound/Adventure.wav");
+         * soundURL[2] = getClass().getResource("/res/Sound/Adventure.wav");
+         */
+
     }
 
     public void setFile(int i) {

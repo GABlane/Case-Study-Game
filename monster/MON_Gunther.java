@@ -6,6 +6,8 @@ import main.GamePanel;
 
 public class MON_Gunther extends Entity {
     GamePanel gp;
+
+
     public MON_Gunther(GamePanel gp) {
         super(gp);
 
@@ -15,7 +17,7 @@ public class MON_Gunther extends Entity {
 
         name = "Gunter";
         speed = 1;
-        maxLife = 4;
+        maxLife = 20;
         life = maxLife;
 
         solidArea.x = 3;
@@ -30,12 +32,14 @@ public class MON_Gunther extends Entity {
 
     @Override
     public void getImage() {
-        up = setup("/monster/Gunter-up", gp.tileSize,gp.tileSize);
-        down = setup("/monster/Gunter-down", gp.tileSize,gp.tileSize);
-        left1 = setup("/monster/Gunter-left1", gp.tileSize,gp.tileSize);
-        left2 = setup("/monster/Gunter-left2", gp.tileSize,gp.tileSize);
-        right1 = setup("/monster/Gunter-right1", gp.tileSize,gp.tileSize);
-        right2 = setup("/monster/Gunter-right2", gp.tileSize,gp.tileSize);
+        up1 = setup("/monster/Gunter-up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/monster/Gunter-up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/monster/Gunter-down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/monster/Gunter-down2", gp.tileSize, gp.tileSize);
+        left1 = setup("/monster/Gunter-left1", gp.tileSize, gp.tileSize);
+        left2 = setup("/monster/Gunter-left2", gp.tileSize, gp.tileSize);
+        right1 = setup("/monster/Gunter-right1", gp.tileSize, gp.tileSize);
+        right2 = setup("/monster/Gunter-right2", gp.tileSize, gp.tileSize);
     }
 
     public void setAction() {
@@ -57,5 +61,11 @@ public class MON_Gunther extends Entity {
             }
             actionLockCOunter = 0;
         }
+    }
+
+    public void damageReaction() {
+
+        actionLockCOunter = 0;
+        direction = gp.player.direction;
     }
 }

@@ -54,8 +54,10 @@ public class Player extends Entity {
     @Override
     public void getImage() {
 
-        up = setup("/player/up", gp.tileSize, gp.tileSize);
-        down = setup("/player/down", gp.tileSize, gp.tileSize);
+        up1 = setup("/player/up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/player/up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/player/down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/player/down2", gp.tileSize, gp.tileSize);
         left1 = setup("/player/left1", gp.tileSize, gp.tileSize);
         left2 = setup("/player/left2", gp.tileSize, gp.tileSize);
         right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
@@ -80,7 +82,7 @@ public class Player extends Entity {
         if (attacking == true) {
             attacking();
         } else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
-                || keyH.rightPressed == true || keyH.enterPressed == true) {
+                || keyH.rightPressed == true || keyH.enterPressed == true /* || keyH.enterPressed = true */ ) {
             if (keyH.upPressed == true) {
                 direction = "up";
             }
@@ -101,12 +103,15 @@ public class Player extends Entity {
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            // check tile collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            // check npc collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.Npc);
             interactNPC(npcIndex);
 
+            // check monster collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
@@ -221,6 +226,7 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.Npc[i].speak();
             } else {
+                /* gp.playSE(1); */
                 attacking = true;
             }
             gp.keyH.enterPressed = false;
@@ -231,6 +237,7 @@ public class Player extends Entity {
 
         if (i != 999) {
             if (invisible == false) {
+                /* gp.playSE(2); */
                 life -= 1;
                 invisible = true;
             }
@@ -241,11 +248,14 @@ public class Player extends Entity {
         if (i != 999) {
 
             if (gp.monster[i].invisible == false) {
+
+                /* gp.playSE(3); */
                 gp.monster[i].life -= 1;
                 gp.monster[i].invisible = true;
+                gp.monster[i].damageReaction();
 
                 if (gp.monster[i].life <= 0) {
-                    gp.monster[i] = null;
+                    gp.monster[i].dying = true;
                 }
             }
         }
@@ -260,7 +270,10 @@ public class Player extends Entity {
             case "up":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = up;
+                        image = up1;
+                    }
+                    if (spriteNum == 2) {
+                        image = up2;
                     }
                 }
                 if (attacking == true) {
@@ -276,7 +289,10 @@ public class Player extends Entity {
             case "down":
                 if (attacking == false) {
                     if (spriteNum == 1) {
-                        image = down;
+                        image = down1;
+                    }
+                    if (spriteNum == 2) {
+                        image = down2;
                     }
                 }
                 if (attacking == true) {

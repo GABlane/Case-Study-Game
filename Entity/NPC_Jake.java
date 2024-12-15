@@ -18,12 +18,14 @@ public class NPC_Jake extends Entity {
     @Override
     public void getImage() {
 
-        up = setup("/NPC/jake-up",gp.tileSize,gp.tileSize);
-        down = setup("/NPC/jake-1",gp.tileSize,gp.tileSize);
-        left1 = setup("/NPC/jake-left-1",gp.tileSize,gp.tileSize);
-        left2 = setup("/NPC/jake-left-2",gp.tileSize,gp.tileSize);
-        right1 = setup("/NPC/jake-right-1",gp.tileSize,gp.tileSize);
-        right2 = setup("/NPC/jake-right-2",gp.tileSize,gp.tileSize);
+        up1 = setup("/NPC/jake-up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/NPC/jake-up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/NPC/jake-down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/NPC/jake-down2", gp.tileSize, gp.tileSize);
+        left1 = setup("/NPC/jake-left-1", gp.tileSize, gp.tileSize);
+        left2 = setup("/NPC/jake-left-2", gp.tileSize, gp.tileSize);
+        right1 = setup("/NPC/jake-right-1", gp.tileSize, gp.tileSize);
+        right2 = setup("/NPC/jake-right-2", gp.tileSize, gp.tileSize);
 
     }
 
