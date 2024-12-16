@@ -107,6 +107,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.optionState;
         }
 
+        // debug
         if (code == KeyEvent.VK_T) {
             if (checkDraw == false) {
                 checkDraw = true;
