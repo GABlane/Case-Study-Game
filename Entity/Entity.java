@@ -57,11 +57,13 @@ public class Entity {
     public int dexterity;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
     // episode 28
     public int attackValue;
     public int defenseValue;
     public String description = "";
+
 
     //TYPE
     public int type;
@@ -79,6 +81,8 @@ public class Entity {
     int dyingCounter = 0;
     boolean hpBarOn = false;
     int hpBarcounter = 0;
+
+    public int shotAvailbleCounter = 0;
 
     // abstractions
     public Entity(GamePanel gp) {
@@ -130,17 +134,7 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if (this.type == type_monster && contactPlayer == true) {
-            if (gp.player.invisible == false) {
-                // we can give damage(alisin comment nyang code sa baba kapag may sound na )
-                /* gp.playSE(4); */
-                int damage = attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
-                }
-
-                gp.player.life -= damage;
-                gp.player.invisible = true;
-            }
+            damageplayer(attack);
         }
         if (collisionOn == false) {
             switch (direction) {
@@ -180,6 +174,7 @@ public class Entity {
         }
     }
 
+
     public BufferedImage setup(String Path, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -218,6 +213,20 @@ public class Entity {
         right1 = setup("/player/right1", gp.tileSize, gp.tileSize);
         right2 = setup("/player/right2", gp.tileSize, gp.tileSize);
 
+    }
+
+    public void damageplayer(int attack){
+        if (gp.player.invisible == false) {
+            // we can give damage(alisin comment nyang code sa baba kapag may sound na )
+            /* gp.playSE(4); */
+            int damage = attack - gp.player.defense;
+            if (damage < 0) {
+                damage = 0;
+            }
+
+            gp.player.life -= damage;
+            gp.player.invisible = true;
+        }
     }
 
     public void draw(Graphics2D g2) {

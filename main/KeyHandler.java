@@ -5,23 +5,20 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean shotKeyPressed, upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     GamePanel gp;
     boolean checkDraw = false;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
-
     public KeyHandler() {
         // TODO Auto-generated constructor stub
     }
-
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -46,7 +43,6 @@ public class KeyHandler implements KeyListener {
             characterState(code);
         }
     }
-
     public void titleState(int code) {
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNum--;
@@ -73,7 +69,6 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-
     public void playState(int code) {
 
         if (code == KeyEvent.VK_W) {
@@ -97,6 +92,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
+        }
 
         if (code == KeyEvent.VK_T) {
             if (checkDraw == false) {
@@ -106,19 +104,16 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-
     public void pauseState(int code) {
         if (code == KeyEvent.VK_P) {
             gp.gameState = gp.playState;
         }
     }
-
     public void dialoguestate(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
         }
     }
-
     public void characterState(int code) {
         if (code == KeyEvent.VK_C) {
             gp.gameState = gp.playState;
@@ -148,7 +143,6 @@ public class KeyHandler implements KeyListener {
             gp.player.selectItem();
         }
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -165,7 +159,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightPressed = false;
         }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
+        }
     }
     // Character State
-
 }

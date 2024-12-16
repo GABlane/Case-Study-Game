@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Obj.OBJ_Key;
 import Obj.OBJ_Shield_Normal;
+import Obj.OBJ_SnowBall;
 import Obj.OBJ_Stick;
 import main.GamePanel;
 import main.KeyHandler;
@@ -42,7 +43,6 @@ public class Player extends Entity {
         // attackArea.width = 36;
         // attackArea.height = 36;
 
-
         setDefaultValues();
         getImage();
         playerAttackImage();
@@ -74,6 +74,7 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new OBJ_Stick(gp);
         currentShield = new OBJ_Shield_Normal(gp);
+        projectile = new OBJ_SnowBall(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -201,6 +202,13 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        //SET COORDINATES
+        if (gp.keyH.shotKeyPressed == true && projectile.alive == false) {
+            projectile.set(worldX,worldY,direction,true,this);
+
+            //ADD TO THE LIST
+            gp.projectileList.add(projectile);
+        }
 
         if (invisible == true) {
             invisibleCounter++;
@@ -208,6 +216,9 @@ public class Player extends Entity {
                 invisible = false;
                 invisibleCounter = 0;
             }
+        }
+        if (shotAvailbleCounter < 30) {
+            
         }
     }
 
@@ -248,7 +259,7 @@ public class Player extends Entity {
 
             // check monster collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex,attack);
 
             // after checking collision, restore the original data
             worldX = currentWorldX;
@@ -278,7 +289,6 @@ public class Player extends Entity {
             gp.obj[i] = null;
         }
     }
-
     // npc
     public void interactNPC(int i) {
 
@@ -311,7 +321,7 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
         if (i != 999) {
 
             if (gp.monster[i].invisible == false) {
