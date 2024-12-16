@@ -12,13 +12,16 @@ public class KeyHandler implements KeyListener {
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
+
     public KeyHandler() {
         // TODO Auto-generated constructor stub
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -41,8 +44,12 @@ public class KeyHandler implements KeyListener {
         } else if (gp.gameState == gp.characterState) {
             // character State
             characterState(code);
+        } else if (gp.gameState == gp.optionState) {
+            // OPTION STATE
+            optionState(code);
         }
     }
+
     public void titleState(int code) {
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNum--;
@@ -69,6 +76,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
+
     public void playState(int code) {
 
         if (code == KeyEvent.VK_W) {
@@ -95,6 +103,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
         }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.optionState;
+        }
 
         if (code == KeyEvent.VK_T) {
             if (checkDraw == false) {
@@ -104,16 +115,83 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
+
     public void pauseState(int code) {
         if (code == KeyEvent.VK_P) {
             gp.gameState = gp.playState;
         }
     }
+
     public void dialoguestate(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
         }
     }
+
+    public void optionState(int code) {
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+
+        int maxCommandNum = 0;
+        switch (gp.ui.subState) {
+            case 0:
+                maxCommandNum = 4;
+                break;
+            case 2:
+                maxCommandNum = 1;
+                break;
+
+            default:
+                break;
+        }
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNum--;
+            // gp.playSE(maxCommandNum);
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNum++;
+            // gp.playSE(maxCommandNum);
+            if (gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }
+        if (code == KeyEvent.VK_A) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNum == 0 && gp.music.volumeScale > 0) {
+                    gp.music.volumeScale--;
+                    gp.music.checkVolume();
+                    // gp.playSE(maxCommandNum);
+                }
+
+                if (gp.ui.commandNum == 1 && gp.SFX.volumeScale > 0) {
+                    gp.SFX.volumeScale--;
+                    // gp.playSE(maxCommandNum);
+                }
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNum == 0 && gp.music.volumeScale < 5) {
+                    gp.music.volumeScale++;
+                    gp.music.checkVolume();
+                    // gp.playSE(maxCommandNum);
+                }
+                if (gp.ui.commandNum == 1 && gp.SFX.volumeScale < 5) {
+                    gp.SFX.volumeScale++;
+                    // gp.playSE(maxCommandNum);
+                }
+            }
+        }
+
+    }
+
     public void characterState(int code) {
         if (code == KeyEvent.VK_C) {
             gp.gameState = gp.playState;
@@ -143,6 +221,7 @@ public class KeyHandler implements KeyListener {
             gp.player.selectItem();
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -159,6 +238,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightPressed = false;
         }
+        // if (code == KeyEvent.VK_ENTER) {
+        // enterPressed = false;
+        // }
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = false;
         }
