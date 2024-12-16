@@ -13,7 +13,7 @@ public class MON_Gunther extends Entity {
 
         this.gp = gp;
 
-        type = 2;
+        type = type_monster;
 
         name = "Gunter";
         speed = 1;

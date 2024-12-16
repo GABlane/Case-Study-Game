@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import Obj.OBJ_Key;
 import Obj.OBJ_Shield_Normal;
-import Obj.OBJ_Sword_Normal;
+import Obj.OBJ_Stick;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -39,8 +39,9 @@ public class Player extends Entity {
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
+        // attackArea.width = 36;
+        // attackArea.height = 36;
+
 
         setDefaultValues();
         getImage();
@@ -51,9 +52,6 @@ public class Player extends Entity {
     public void setItem() {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Key(gp));
     }
@@ -74,7 +72,7 @@ public class Player extends Entity {
         exp = 0;
         nextLvlExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentWeapon = new OBJ_Stick(gp);
         currentShield = new OBJ_Shield_Normal(gp);
         attack = getAttack();
         defense = getDefense();
@@ -82,6 +80,7 @@ public class Player extends Entity {
 
     // the more attack in weapon or the more attack in shield enhances the stats
     public int getAttack() {
+        attackArea = currentWeapon.attackArea; 
         return attack = strength * currentWeapon.attackValue;
     }
 
@@ -104,14 +103,29 @@ public class Player extends Entity {
     }
 
     public void playerAttackImage() {
-        attackUp1 = setup("/player/attack_up1", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setup("/player/attack_up2", gp.tileSize, gp.tileSize * 2);
-        attackDown1 = setup("/player/attack_down1", gp.tileSize, gp.tileSize * 2);
-        attackDown2 = setup("/player/attack_down2", gp.tileSize, gp.tileSize * 2);
-        attackLeft1 = setup("/player/attack_left1", gp.tileSize * 2, gp.tileSize);
-        attackLeft2 = setup("/player/attack_left2", gp.tileSize * 2, gp.tileSize);
-        attackRight1 = setup("/player/attack_right1", gp.tileSize * 2, gp.tileSize);
-        attackRight2 = setup("/player/attack_right2", gp.tileSize * 2, gp.tileSize);
+        if (currentWeapon.type == type_sword) {
+         
+        attackUp1 = setup("/player/attack_sword_up1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/player/attack_sword_up2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("/player/attack_sword_down1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("/player/attack_sword_down2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("/player/attack_sword_left1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("/player/attack_sword_left2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("/player/attack_sword_right1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("/player/attack_sword_right2", gp.tileSize * 2, gp.tileSize);
+           
+        }
+        if (currentWeapon.type == type_stick) {
+            
+        attackUp1 = setup("/player/attack_stick_up1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/player/attack_stick_up2", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("/player/attack_stick_down1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("/player/attack_stick_down2", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("/player/attack_stick_left1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("/player/attack_stick_left2", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("/player/attack_stick_right1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("/player/attack_stick_right2", gp.tileSize * 2, gp.tileSize);
+        }
     }
 
     @Override
@@ -252,7 +266,16 @@ public class Player extends Entity {
     // object
     public void pickUpObject(int i) {
         if (i != 999) {
-
+            String text;
+            if ( inventory.size() != maxInventorySize) {
+                inventory.add(gp.obj[i]);
+                gp.playSE(4);
+                text = "Got a " + gp.obj[i].name + "!";
+            }else{
+                text = "You cannot carry anymore";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
 
@@ -275,7 +298,7 @@ public class Player extends Entity {
     public void contactMonster(int i) {
 
         if (i != 999) {
-            if (invisible == false) {
+            if (invisible == false && gp.monster[i].dying == false) {
                 gp.playerSE(2);
                 int damage = attack - gp.monster[i].attack - defense;
                 if (damage < 0) {
@@ -329,7 +352,28 @@ public class Player extends Entity {
             gp.aSetter.setMonster();
             life = maxLife;
         }
+    }
 
+    public void selectItem(){
+
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if (itemIndex < inventory.size()) {
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if (selectedItem.type == type_sword || selectedItem.type == type_stick) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                playerAttackImage();
+            }
+            if (selectedItem.type == type_shield) {
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == type_consumable) {
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {

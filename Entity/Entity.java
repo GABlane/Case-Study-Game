@@ -47,7 +47,6 @@ public class Entity {
     public int life;
     public String name;
     public boolean collision = false;
-    public int type;
     public int level;
     public int strength;
     public int attack;
@@ -63,6 +62,16 @@ public class Entity {
     public int attackValue;
     public int defenseValue;
     public String description = "";
+
+    //TYPE
+    public int type;
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_sword = 3;
+    public final int type_stick = 4;
+    public final int type_shield =5;
+    public final int type_consumable = 6;
 
     // episode24
     public boolean alive = true;
@@ -108,7 +117,9 @@ public class Entity {
         }
 
     }
+    public void use(Entity entity){
 
+    }
     public void update() {
         setAction();
         collisionOn = false;
@@ -118,7 +129,7 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.monster);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
+        if (this.type == type_monster && contactPlayer == true) {
             if (gp.player.invisible == false) {
                 // we can give damage(alisin comment nyang code sa baba kapag may sound na )
                 /* gp.playSE(4); */
@@ -318,7 +329,6 @@ public class Entity {
             changeAlpha(g2, 1f);
         }
         if (dyingCounter > i * 8) {
-            dying = false;
             alive = false;
         }
     }
