@@ -18,6 +18,7 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
+
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
@@ -47,6 +48,21 @@ public class Entity {
     public String name;
     public boolean collision = false;
     public int type;
+    public int level;
+    public int strength;
+    public int attack;
+    public int defense;
+    public int nextLvlExp;
+    public int exp;
+    public int coin;
+    public int dexterity;
+    public Entity currentWeapon;
+    public Entity currentShield;
+
+    // episode 28
+    public int attackValue;
+    public int defenseValue;
+    public String description = "";
 
     // episode24
     public boolean alive = true;
@@ -106,7 +122,12 @@ public class Entity {
             if (gp.player.invisible == false) {
                 // we can give damage(alisin comment nyang code sa baba kapag may sound na )
                 /* gp.playSE(4); */
-                gp.player.life -= 1;
+                int damage = attack - gp.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                gp.player.life -= damage;
                 gp.player.invisible = true;
             }
         }
@@ -141,7 +162,7 @@ public class Entity {
 
         if (invisible == true) {
             invisibleCounter++;
-            if (invisibleCounter == 90) {
+            if (invisibleCounter == 60) {
                 invisible = false;
                 invisibleCounter = 0;
             }
@@ -159,6 +180,21 @@ public class Entity {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public String getOppositeDirection(String currentDirection) {
+        switch (currentDirection) {
+            case "up":
+                return "down";
+            case "down":
+                return "up";
+            case "left":
+                return "right";
+            case "right":
+                return "left";
+            default:
+                return currentDirection;
+        }
     }
 
     public void getImage() {
@@ -242,13 +278,12 @@ public class Entity {
                 hpBarcounter = 0;
                 changeAlpha(g2, 0.4f);
             }
-            if (dying = true) {
+            if (dying == true) {
                 dyingAnimation(g2);
             }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-            changeAlpha(g2, 0.4f);
         }
     }
 

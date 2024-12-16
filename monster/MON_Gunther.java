@@ -17,8 +17,11 @@ public class MON_Gunther extends Entity {
 
         name = "Gunter";
         speed = 1;
-        maxLife = 20;
+        maxLife = 5;
         life = maxLife;
+        attack = 3;
+        defense = 0;
+        exp = 2;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -64,8 +67,7 @@ public class MON_Gunther extends Entity {
     }
 
     public void damageReaction() {
-
         actionLockCOunter = 0;
-        direction = gp.player.direction;
+        direction = getOppositeDirection(gp.player.direction);
     }
 }
