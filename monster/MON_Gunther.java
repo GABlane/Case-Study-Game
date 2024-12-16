@@ -2,6 +2,8 @@ package monster;
 
 import java.util.Random;
 import Entity.Entity;
+import Obj.OBJ_SnowBall;
+import Obj.OBJ_SnowFlake;
 import main.GamePanel;
 
 public class MON_Gunther extends Entity {
@@ -22,7 +24,9 @@ public class MON_Gunther extends Entity {
         attack = 3;
         defense = 0;
         exp = 2;
+        projectile = new OBJ_SnowFlake(gp);
 
+        
         solidArea.x = 3;
         solidArea.y = 18;
         solidArea.width = 41;
@@ -63,6 +67,14 @@ public class MON_Gunther extends Entity {
 
             }
             actionLockCOunter = 0;
+
+        }
+        int i = new Random().nextInt(100) + 1;
+        if (i > 99 && projectile.alive == false && shotAvailbleCounter == 30) {
+            projectile.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(projectile);
+            shotAvailbleCounter = 0;
+            
         }
     }
 
