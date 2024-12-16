@@ -29,7 +29,6 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     int subState = 0;
-    int subState = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
