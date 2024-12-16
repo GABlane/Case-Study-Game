@@ -1,16 +1,15 @@
 package Obj;
 
-import java.io.IOException;
+import Entity.Entity;
+import main.GamePanel;
 
-import javax.imageio.ImageIO;
+public class OBJ_Boots extends Entity {
 
-public class OBJ_Boots extends SuperObj {
-public OBJ_Boots() {
+    public OBJ_Boots(GamePanel gp) {
+        super(gp);
         name = "Boot";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/Objects/Boot.png")); // lalagay pako ng sword ni finn
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        down1 = setup("/Objects/Boot", gp.tileSize, gp.tileSize);
+        description = "[ " + name + " ]";
+
     }
 }

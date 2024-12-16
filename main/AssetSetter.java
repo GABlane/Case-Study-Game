@@ -1,11 +1,12 @@
 package main;
 
-import Obj.OBJ_Boots;
-import Obj.OBJ_Chest;
+import Entity.NPC_Jake;
+import Obj.OBJ_COIN;
 import Obj.OBJ_DOOR;
-import Obj.OBJ_Hole;
+import Obj.OBJ_Heart;
 import Obj.OBJ_Key;
-// import Obj.OBJ_Sword;
+import Obj.OBJ_sanWitch;
+import monster.MON_Gunther;
 
 public class AssetSetter {
 
@@ -16,30 +17,54 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        int i = 0;
+        gp.obj[i] = new OBJ_DOOR(gp);
+        gp.obj[i].worldX = gp.tileSize * 24;
+        gp.obj[i].worldY = gp.tileSize * 35;
 
-        // gp.obj[0] = new OBJ_Key();
-        // gp.obj[0].worldX = 17 * gp.tileSize;
-        // gp.obj[0].worldY = 14 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i].worldY = gp.tileSize * 10;
 
-        gp.obj[5] = new OBJ_Key();
-        gp.obj[5].worldX = 42 * gp.tileSize;
-        gp.obj[5].worldY = 12 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_COIN(gp);
+        gp.obj[i].worldX = gp.tileSize * 25;
+        gp.obj[i].worldY = gp.tileSize * 13;
 
-        gp.obj[1] = new OBJ_DOOR();
-        gp.obj[1].worldX = 24 * gp.tileSize;
-        gp.obj[1].worldY = 35 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_sanWitch(gp);
+        gp.obj[i].worldX = gp.tileSize * 27;
+        gp.obj[i].worldY = gp.tileSize * 35;
 
-        gp.obj[4] = new OBJ_Chest();
-        gp.obj[4].worldX = 26 * gp.tileSize;
-        gp.obj[4].worldY = 35 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = gp.tileSize * 25;
+        gp.obj[i].worldY = gp.tileSize * 25;
+    }
 
-        gp.obj[2] = new OBJ_Boots();
-        gp.obj[2].worldX = 16 * gp.tileSize;
-        gp.obj[2].worldY = 45 * gp.tileSize;
+    public void setNPC() {
+        gp.Npc[0] = new NPC_Jake(gp);
+        gp.Npc[0].worldX = gp.tileSize * 27;
+        gp.Npc[0].worldY = gp.tileSize * 22;
 
-        gp.obj[3] = new OBJ_Hole();
-        gp.obj[3].worldX = 17 * gp.tileSize;
-        gp.obj[3].worldY = 46 * gp.tileSize;
+    }
 
+    public void setMonster() {
+        gp.monster[0] = new MON_Gunther(gp);
+        gp.monster[0].worldX = gp.tileSize * 40;
+        gp.monster[0].worldY = gp.tileSize * 11;
+
+        gp.monster[1] = new MON_Gunther(gp);
+        gp.monster[1].worldX = gp.tileSize * 38;
+        gp.monster[1].worldY = gp.tileSize * 10;
+
+        gp.monster[2] = new MON_Gunther(gp);
+        gp.monster[2].worldX = gp.tileSize * 40;
+        gp.monster[2].worldY = gp.tileSize * 8;
+
+        gp.monster[1] = new MON_Gunther(gp);
+        gp.monster[1].worldX = gp.tileSize * 41;
+        gp.monster[1].worldY = gp.tileSize * 13;
     }
 }

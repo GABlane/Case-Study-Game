@@ -1,1 +1,1 @@
-this case study is focus on making a rpg game.
+We're making the part two of making the action RPG game!!

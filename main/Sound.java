@@ -13,12 +13,22 @@ public class Sound {
 
     public Sound() {
         soundURL[0] = getClass().getResource("/res/Sound/Adventure.wav");
+        // palagyan sound
+        /*
+         * soundURL[0] = getClass().getResource("/res/Sound/Adventure.wav");
+         */
+
+        soundURL[1] = getClass().getResource("/res/Sound/DamMons.wav");
+        soundURL[2] = getClass().getResource("/res/Sound/hurt.wav");
+        soundURL[3] = getClass().getResource("/res/Sound/Swoosh.wav");
+        soundURL[4] = getClass().getResource("/res/Sound/coin.wav");
+
     }
 
     public void setFile(int i) {
 
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[0]);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
         } catch (Exception e) {
@@ -36,6 +46,5 @@ public class Sound {
 
     public void play() {
         clip.start();
-
     }
 }
