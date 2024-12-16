@@ -2,13 +2,14 @@ package monster;
 
 import java.util.Random;
 import Entity.Entity;
-import Obj.OBJ_SnowBall;
+import Obj.OBJ_COIN;
+import Obj.OBJ_Heart;
 import Obj.OBJ_SnowFlake;
+import Obj.OBJ_Sword_Normal;
 import main.GamePanel;
 
 public class MON_Gunther extends Entity {
     GamePanel gp;
-
 
     public MON_Gunther(GamePanel gp) {
         super(gp);
@@ -26,7 +27,6 @@ public class MON_Gunther extends Entity {
         exp = 2;
         projectile = new OBJ_SnowFlake(gp);
 
-        
         solidArea.x = 3;
         solidArea.y = 18;
         solidArea.width = 41;
@@ -74,12 +74,29 @@ public class MON_Gunther extends Entity {
             projectile.set(worldX, worldY, direction, true, this);
             gp.projectileList.add(projectile);
             shotAvailbleCounter = 0;
-            
+
         }
     }
 
     public void damageReaction() {
         actionLockCOunter = 0;
         direction = getOppositeDirection(gp.player.direction);
+    }
+
+    @Override
+    public void checkDrop() {
+
+        // DROP RATE
+        int i = new Random().nextInt(100) + 1;
+
+        // SET MONSTER DROP
+        if (i < 75) {
+            dropItem(new OBJ_COIN(gp));
+        } else if (i >= 75 && i <= 90) {
+            dropItem(new OBJ_Heart(gp));
+        } else if (i >= 90 && i <= 100) {
+            dropItem(new OBJ_Sword_Normal(gp));
+        }
+
     }
 }

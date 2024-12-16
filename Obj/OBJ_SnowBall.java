@@ -5,7 +5,8 @@ import main.GamePanel;
 
 public class OBJ_SnowBall extends Projectile {
     GamePanel gp;
-    public OBJ_SnowBall(GamePanel gp){
+
+    public OBJ_SnowBall(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
@@ -19,7 +20,7 @@ public class OBJ_SnowBall extends Projectile {
     }
 
     @Override
-    public void getImage(){
+    public void getImage() {
         up1 = setup("/projectile/Snow-up1", gp.tileSize, gp.tileSize);
         up2 = setup("/projectile/Snow-up2", gp.tileSize, gp.tileSize);
         down1 = setup("/projectile/Snow-down1", gp.tileSize, gp.tileSize);
@@ -27,8 +28,7 @@ public class OBJ_SnowBall extends Projectile {
         left1 = setup("/projectile/Snow-left1", gp.tileSize, gp.tileSize);
         left2 = setup("/projectile/Snow-left2", gp.tileSize, gp.tileSize);
         right1 = setup("/projectile/Snow-right1", gp.tileSize, gp.tileSize);
-        right2= setup("/projectile/Snow-right2", gp.tileSize, gp.tileSize);
+        right2 = setup("/projectile/Snow-right2", gp.tileSize, gp.tileSize);
     }
-
 
 }

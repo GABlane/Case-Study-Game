@@ -10,8 +10,8 @@ public class OBJ_Sword_Normal extends Entity {
         type = type_sword;
         name = "Golden Sword";
         down1 = setup("/Objects/sword", gp.tileSize, gp.tileSize);
-        attackArea.width =36;
-        attackArea.height =36;
+        attackArea.width = 36;
+        attackArea.height = 36;
         attackValue = 2;
         description = "[ " + name + " ]";
     }

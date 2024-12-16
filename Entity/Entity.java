@@ -18,7 +18,6 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
@@ -60,20 +59,21 @@ public class Entity {
     public Projectile projectile;
 
     // episode 28
+    public int value;
     public int attackValue;
     public int defenseValue;
     public String description = "";
 
-
-    //TYPE
+    // TYPE
     public int type;
     public final int type_player = 0;
     public final int type_npc = 1;
     public final int type_monster = 2;
     public final int type_sword = 3;
     public final int type_stick = 4;
-    public final int type_shield =5;
+    public final int type_shield = 5;
     public final int type_consumable = 6;
+    public final int type_pickUpOnly = 7;
 
     // episode24
     public boolean alive = true;
@@ -121,9 +121,26 @@ public class Entity {
         }
 
     }
-    public void use(Entity entity){
+
+    public void use(Entity entity) {
 
     }
+
+    public void checkDrop() {
+
+    }
+
+    public void dropItem(Entity dropItem) {
+        for (int i = 0; i < gp.obj.length; i++) {
+            if (gp.obj[i] == null) {
+                gp.obj[i] = dropItem;
+                gp.obj[i].worldX = worldX;
+                gp.obj[i].worldY = worldY;
+                break;
+            }
+        }
+    }
+
     public void update() {
         setAction();
         collisionOn = false;
@@ -177,7 +194,6 @@ public class Entity {
         }
     }
 
-
     public BufferedImage setup(String Path, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -218,7 +234,7 @@ public class Entity {
 
     }
 
-    public void damageplayer(int attack){
+    public void damageplayer(int attack) {
         if (gp.player.invisible == false) {
             // we can give damage(alisin comment nyang code sa baba kapag may sound na )
             /* gp.playSE(4); */
