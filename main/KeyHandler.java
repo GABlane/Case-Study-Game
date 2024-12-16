@@ -27,20 +27,28 @@ public class KeyHandler implements KeyListener {
         if (gp.gameState == gp.titleState) {
             // title state
             titleState(code);
-        } else if (gp.gameState == gp.playState) {
+        } 
+        else if (gp.gameState == gp.playState) {
             // PLAY STATE
             playState(code);
             // DEBUG
 
-        } else if (gp.gameState == gp.pauseState) {
+        } 
+        else if (gp.gameState == gp.pauseState) {
             // PAUSE STATE
             pauseState(code);
-        } else if (gp.gameState == gp.dialogueState) {
+        } 
+        else if (gp.gameState == gp.dialogueState) {
             // DIALOGUE STATE
             dialoguestate(code);
-        } else if (gp.gameState == gp.characterState) {
+        } 
+        else if (gp.gameState == gp.characterState) {
             // character State
             characterState(code);
+        }
+        else if (gp.gameState == gp.optionsState) {
+            // options State
+            optionsState(code);
         }
     }
     public void titleState(int code) {
@@ -95,7 +103,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
         }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.optionsState;
+        }
 
+        //debug
         if (code == KeyEvent.VK_T) {
             if (checkDraw == false) {
                 checkDraw = true;
@@ -143,6 +155,39 @@ public class KeyHandler implements KeyListener {
             gp.player.selectItem();
         }
     }
+
+    public void optionsState(int code){
+
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.playState;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+        
+        int maxCommandNum = 0;
+        switch(gp.ui.subState){
+            case 0: maxCommandNum = 5;
+        }
+
+        if(code == KeyEvent.VK_W){
+            gp.ui.commandNum--; 
+            gp.playSE(9);
+            if(gp.ui.commandNum < 0){
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            gp.ui.commandNum++;
+            gp.playSE(9);
+            if(gp.ui.commandNum > maxCommandNum){
+                gp.ui.commandNum = 0;
+            }
+        }
+
+
+    }
+
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
