@@ -167,10 +167,13 @@ public class Entity {
 
         if (invisible == true) {
             invisibleCounter++;
-            if (invisibleCounter == 60) {
+            if (invisibleCounter > 40) {
                 invisible = false;
                 invisibleCounter = 0;
             }
+        }
+        if (shotAvailbleCounter < 30) {
+            shotAvailbleCounter++;
         }
     }
 

@@ -203,11 +203,13 @@ public class Player extends Entity {
             }
         }
         //SET COORDINATES
-        if (gp.keyH.shotKeyPressed == true && projectile.alive == false) {
+        if (gp.keyH.shotKeyPressed == true && projectile.alive == false&& shotAvailbleCounter ==30)  {
             projectile.set(worldX,worldY,direction,true,this);
 
             //ADD TO THE LIST
             gp.projectileList.add(projectile);
+
+            shotAvailbleCounter = 0;
         }
 
         if (invisible == true) {
@@ -218,7 +220,7 @@ public class Player extends Entity {
             }
         }
         if (shotAvailbleCounter < 30) {
-            
+            shotAvailbleCounter++;
         }
     }
 
