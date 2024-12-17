@@ -5,9 +5,13 @@ import main.GamePanel;
 
 public class OBJ_DOOR extends Entity {
 
+    GamePanel gp;
+
     public OBJ_DOOR(GamePanel gp) {
         super(gp);
+        this.gp = gp;
 
+        type = type_Obstacle;
         name = "Door";
         down1 = setup("/Objects/door", gp.tileSize, gp.tileSize);
         collision = true;
@@ -18,5 +22,12 @@ public class OBJ_DOOR extends Entity {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+    }
+
+    // @Override
+    public void interact() {
+        gp.gameState = gp.dialogueState;
+        gp.ui.currentDialogue = "You need a key to open this";
+
     }
 }

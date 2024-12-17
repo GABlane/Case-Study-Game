@@ -17,54 +17,85 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        int mapNum = 0;
         int i = 0;
-        gp.obj[i] = new OBJ_DOOR(gp);
-        gp.obj[i].worldX = gp.tileSize * 24;
-        gp.obj[i].worldY = gp.tileSize * 35;
+
+        gp.obj[mapNum][i] = new OBJ_DOOR(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 24;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 35;
 
         i++;
-        gp.obj[i] = new OBJ_Key(gp);
-        gp.obj[i].worldX = gp.tileSize * 21;
-        gp.obj[i].worldY = gp.tileSize * 10;
+        gp.obj[mapNum][i] = new OBJ_DOOR(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 22;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 10;
 
         i++;
-        gp.obj[i] = new OBJ_COIN(gp);
-        gp.obj[i].worldX = gp.tileSize * 25;
-        gp.obj[i].worldY = gp.tileSize * 13;
+        gp.obj[mapNum][i] = new OBJ_Key(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 21;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 10;
 
         i++;
-        gp.obj[i] = new OBJ_sanWitch(gp);
-        gp.obj[i].worldX = gp.tileSize * 27;
-        gp.obj[i].worldY = gp.tileSize * 35;
+        gp.obj[mapNum][i] = new OBJ_COIN(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 13;
 
         i++;
-        gp.obj[i] = new OBJ_Heart(gp);
-        gp.obj[i].worldX = gp.tileSize * 25;
-        gp.obj[i].worldY = gp.tileSize * 25;
+        gp.obj[mapNum][i] = new OBJ_sanWitch(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 27;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 35;
+
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Heart(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 25;
     }
 
     public void setNPC() {
-        gp.Npc[0] = new NPC_Jake(gp);
-        gp.Npc[0].worldX = gp.tileSize * 27;
-        gp.Npc[0].worldY = gp.tileSize * 22;
+
+        int mapNum = 0;
+        gp.Npc[mapNum][0] = new NPC_Jake(gp);
+        gp.Npc[mapNum][0].worldX = gp.tileSize * 27;
+        gp.Npc[mapNum][0].worldY = gp.tileSize * 22;
 
     }
 
     public void setMonster() {
-        gp.monster[0] = new MON_Gunther(gp);
-        gp.monster[0].worldX = gp.tileSize * 40;
-        gp.monster[0].worldY = gp.tileSize * 11;
 
-        gp.monster[1] = new MON_Gunther(gp);
-        gp.monster[1].worldX = gp.tileSize * 38;
-        gp.monster[1].worldY = gp.tileSize * 10;
+        int mapNum = 0;
+        int i = 0;
 
-        gp.monster[2] = new MON_Gunther(gp);
-        gp.monster[2].worldX = gp.tileSize * 40;
-        gp.monster[2].worldY = gp.tileSize * 8;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 40;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 11;
 
-        gp.monster[1] = new MON_Gunther(gp);
-        gp.monster[1].worldX = gp.tileSize * 41;
-        gp.monster[1].worldY = gp.tileSize * 13;
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 10;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 40;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 41;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 8;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 23;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 9;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 24;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 7;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 22;
     }
 }

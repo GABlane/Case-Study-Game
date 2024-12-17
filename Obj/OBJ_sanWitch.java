@@ -17,7 +17,7 @@ public class OBJ_sanWitch extends Entity {
         description = "[ " + name + " ]";
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You ate the " + name + "!\n" + "Your life has been recovered by " + value + ".";
         entity.life += value;
@@ -25,5 +25,6 @@ public class OBJ_sanWitch extends Entity {
             gp.player.life = gp.player.maxLife;
         }
         // SFX
+        return true;
     }
 }

@@ -48,12 +48,24 @@ public class Player extends Entity {
         setItem();
     }
 
+    public void setDefaultPosition() {
+        worldX = gp.tileSize * 26;
+        worldY = gp.tileSize * 24;
+        direction = "down";
+    }
+
+    public void Retore() {
+        life = maxLife;
+        invisible = false;
+    }
+
     public void setItem() {
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
     }
 
-    void setDefaultValues() {
+    public void setDefaultValues() {
         name = "finn";
         worldX = gp.tileSize * 26;
         worldY = gp.tileSize * 24;
@@ -222,6 +234,10 @@ public class Player extends Entity {
         if (life >= maxLife) {
             life = maxLife;
         }
+        if (life <= 0) {
+            gp.gameState = gp.gameOverState;
+            gp.ui.commandNum -= 1;
+        }
     }
 
     public void attacking() {
@@ -280,21 +296,27 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != 999) {
             // PICK UP ONLY ITEMS
-            if (gp.obj[i].type == type_pickUpOnly) {
-                gp.obj[i].use(this);
-                gp.obj[i] = null;
+            if (gp.obj[gp.currentMap][i].type == type_pickUpOnly) {
+                gp.obj[gp.currentMap][i].use(this);
+                gp.obj[gp.currentMap][i] = null;
+            }
+            // OBSTACLE
+            else if (gp.obj[gp.currentMap][i].type == type_Obstacle) {
+                if (keyH.enterPressed == true) {
+                    gp.obj[gp.currentMap][i].interact();
+                }
             } else {
 
                 String text;
                 if (inventory.size() != maxInventorySize) {
-                    inventory.add(gp.obj[i]);
+                    inventory.add(gp.obj[gp.currentMap][i]);
                     gp.playSE(4);
-                    text = "Got a " + gp.obj[i].name + "!";
+                    text = "Got a " + gp.obj[gp.currentMap][i].name + "!";
                 } else {
                     text = "You cannot carry anymore";
                 }
                 gp.ui.addMessage(text);
-                gp.obj[i] = null;
+                gp.obj[gp.currentMap][i] = null;
             }
 
         }
@@ -307,7 +329,7 @@ public class Player extends Entity {
             if (i != 999) {
                 gp.playSE(4);
                 gp.gameState = gp.dialogueState;
-                gp.Npc[i].speak();
+                gp.Npc[gp.currentMap][i].speak();
             } else {
                 gp.playSE(3);
                 attacking = true;
@@ -319,9 +341,9 @@ public class Player extends Entity {
     public void contactMonster(int i) {
 
         if (i != 999) {
-            if (invisible == false && gp.monster[i].dying == false) {
+            if (invisible == false && gp.monster[gp.currentMap][i].dying == false) {
                 gp.playerSE(2);
-                int damage = attack - gp.monster[i].attack - defense;
+                int damage = attack - gp.monster[gp.currentMap][i].attack - defense;
                 if (damage < 0) {
                     damage = 0;
                 }
@@ -335,25 +357,25 @@ public class Player extends Entity {
     public void damageMonster(int i, int attack) {
         if (i != 999) {
 
-            if (gp.monster[i].invisible == false) {
+            if (gp.monster[gp.currentMap][i].invisible == false) {
 
-                int damage = attack - gp.monster[i].defense;
+                int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;
                 }
 
                 gp.playSE(1);
-                gp.monster[i].life -= damage;
+                gp.monster[gp.currentMap][i].life -= damage;
                 gp.ui.addMessage(damage + " damage dealt");
 
-                gp.monster[i].invisible = true;
-                gp.monster[i].damageReaction();
+                gp.monster[gp.currentMap][i].invisible = true;
+                gp.monster[gp.currentMap][i].damageReaction();
 
-                if (gp.monster[i].life <= 0) {
-                    gp.monster[i].dying = true;
-                    gp.ui.addMessage("killed the " + gp.monster[i].name + " !");
-                    exp += gp.monster[i].exp;
-                    gp.ui.addMessage("Gained " + gp.monster[i].exp + " EXP");
+                if (gp.monster[gp.currentMap][i].life <= 0) {
+                    gp.monster[gp.currentMap][i].dying = true;
+                    gp.ui.addMessage("killed the " + gp.monster[gp.currentMap][i].name + " !");
+                    exp += gp.monster[gp.currentMap][i].exp;
+                    gp.ui.addMessage("Gained " + gp.monster[gp.currentMap][i].exp + " EXP");
                     checkLevel();
                 }
             }
@@ -392,8 +414,9 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if (selectedItem.type == type_consumable) {
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+                if (selectedItem.use(this) == true) {
+                    inventory.remove(itemIndex);
+                }
             }
         }
     }

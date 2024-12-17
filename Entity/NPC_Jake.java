@@ -31,10 +31,10 @@ public class NPC_Jake extends Entity {
 
     public void setDialogue() {
 
-        dialogues[0] = "Hello, my nigga.";
-        dialogues[1] = "So you've come to this island to \nfind the treasure?";
-        dialogues[2] = "I used to be a great nigga but now... \nI'm a bit too old for taking an adventure.";
-        dialogues[3] = "Well, goodluck on you.";
+        dialogues[0] = "Hello, FINN!.";
+        dialogues[1] = "SO YOU'VE COME FOR \nANOTHER ADVENTURE?";
+        dialogues[2] = "GO SAVE PRINCESS BUBBLE GUM \nFROM THAT EVIL ICEKING.";
+        dialogues[3] = "Well, goodluck to you. \n\nI'll go to lady unicord";
 
     }
 
