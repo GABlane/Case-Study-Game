@@ -49,8 +49,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultPosition() {
-        worldX = gp.tileSize * 26;
-        worldY = gp.tileSize * 24;
+        worldX = gp.tileSize * 11;
+        worldY = gp.tileSize * 12;
         direction = "down";
     }
 
@@ -67,8 +67,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         name = "finn";
-        worldX = gp.tileSize * 26;
-        worldY = gp.tileSize * 24;
+        worldX = gp.tileSize * 11;
+        worldY = gp.tileSize * 12;
         speed = 5;
         direction = "down";
 
@@ -394,7 +394,6 @@ public class Player extends Entity {
             gp.ui.currentDialogue = "You're level " + level;
             getAttack();
             getDefense();
-            gp.aSetter.setMonster();
         }
     }
 
