@@ -1,16 +1,34 @@
 package Obj;
 
-import java.io.IOException;
+import Entity.Entity;
+import main.GamePanel;
 
-import javax.imageio.ImageIO;
+public class OBJ_Key extends Entity {
+    GamePanel gp;
 
-public class OBJ_Key extends SuperObj{
-public OBJ_Key() {
+    public OBJ_Key(GamePanel gp) {
+        super(gp);
+        this.gp = gp;
+
+        type = type_consumable;
         name = "Key";
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/Objects/Key.png")); // lalagay pako ng sword ni finn
-        } catch (IOException e) {
-            e.printStackTrace();
+        down1 = setup("/Objects/Key", gp.tileSize, gp.tileSize);
+        description = "[ " + name + " ]";
+
+    }
+
+    public boolean use(Entity entity) {
+        gp.gameState = gp.dialogueState;
+
+        int objIndex = getDetected(entity, gp.obj, "Door");
+
+        if (objIndex != 999) {
+            gp.ui.currentDialogue = "you used the " + name;
+            gp.obj[gp.currentMap][objIndex] = null;
+            return true;
+        } else {
+            gp.ui.currentDialogue = "YOU OK??";
+            return false;
         }
     }
 }
