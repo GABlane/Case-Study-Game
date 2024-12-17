@@ -82,25 +82,25 @@ public class AssetSetter {
 
         i++;
         gp.monster[mapNum][i] = new MON_Gunther(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 8;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 43;
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 11;
 
         i++;
         gp.monster[mapNum][i] = new MON_Gunther(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 9;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 44;
+        gp.monster[mapNum][i].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 15;
 
-        i++;
-        gp.monster[mapNum][i] = new MON_Gunther(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 7;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 45;
-        i++;
-        gp.monster[mapNum][i] = new MON_Gunther(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 45;
-        i++;
-        gp.monster[mapNum][i] = new MON_Gunther(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 10;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 45;
+        // i++;
+        // gp.monster[mapNum][i] = new MON_Gunther(gp);
+        // gp.monster[mapNum][i].worldX = gp.tileSize * 7;
+        // gp.monster[mapNum][i].worldY = gp.tileSize * 45;
+        // i++;
+        // gp.monster[mapNum][i] = new MON_Gunther(gp);
+        // gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        // gp.monster[mapNum][i].worldY = gp.tileSize * 45;
+        // i++;
+        // gp.monster[mapNum][i] = new MON_Gunther(gp);
+        // gp.monster[mapNum][i].worldX = gp.tileSize * 10;
+        // gp.monster[mapNum][i].worldY = gp.tileSize * 45;
     }
 }

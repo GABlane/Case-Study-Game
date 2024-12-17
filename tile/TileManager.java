@@ -56,7 +56,8 @@ public class TileManager {
             e.printStackTrace();
         }
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
-        loadMap("/maps/world01.txt", 0);
+        loadMap("/maps/world1.txt", 0);
+        loadMap("/maps/sampleMap.txt", 1);
     }
 
     public void getTileImage() {
@@ -72,7 +73,6 @@ public class TileManager {
                 collision = false;
             }
             setup(i, fileName, collision);
-            System.out.println(fileName);
         }
     }
 

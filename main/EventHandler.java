@@ -48,9 +48,9 @@ public class EventHandler {
 
         if (canTouchEvent) {
 
-            if (hit(0, 23, 35, "any") == true) {
+            if (hit(0, 47, 29, "any") == true) {
                 damagePit(gp.dialogueState);
-            } else if (hit(0, 44, 25, "any") == true) {
+            } else if (hit(0, 48, 29, "any") == true) {
                 teleport(1, 20, 16);
             } else if (hit(1, 20, 16, "any") == true) {
                 teleport(0, 44, 25);

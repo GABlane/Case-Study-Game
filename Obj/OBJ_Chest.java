@@ -13,7 +13,6 @@ public class OBJ_Chest extends Entity {
 
         super(gp);
         this.gp = gp;
-        this.loot = loot;
 
         type = type_Obstacle;
         name = "Chest";
