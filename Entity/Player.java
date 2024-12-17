@@ -67,8 +67,11 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         name = "finn";
-        worldX = gp.tileSize * 26;
-        worldY = gp.tileSize * 24;
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 20;
+        // worldX = gp.tileSize * 12;
+        // worldY = gp.tileSize * 12;
+        gp.currentMap = 1;
         speed = 5;
         direction = "down";
 
@@ -80,7 +83,7 @@ public class Player extends Entity {
         strength = 1;
         exp = 0;
         nextLvlExp = 5;
-        coin = 0;
+        coin = 1000;
         currentWeapon = new OBJ_Stick(gp);
         currentShield = new OBJ_Shield_Normal(gp);
         projectile = new OBJ_SnowBall(gp);
@@ -400,7 +403,7 @@ public class Player extends Entity {
 
     public void selectItem() {
 
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerslotCol, gp.ui.playerslotRow);
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
 

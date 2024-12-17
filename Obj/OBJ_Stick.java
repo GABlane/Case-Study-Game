@@ -14,5 +14,6 @@ public class OBJ_Stick extends Entity {
         description = "[ " + name + " ]";
         attackArea.width = 25;
         attackArea.height = 25;
+        price = 61;
     }
 }

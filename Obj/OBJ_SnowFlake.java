@@ -17,6 +17,7 @@ public class OBJ_SnowFlake extends Projectile {
         attack = 2;
         alive = false;
         getImage();
+        price = 49;
     }
 
     @Override
