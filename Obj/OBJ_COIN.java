@@ -13,7 +13,7 @@ public class OBJ_COIN extends Entity {
         value = 5;
         type = type_pickUpOnly;
         name = "Gold Coin";
-        down1 = setup("/Objects/coin", gp.tileSize, gp.tileSize);
+        down1 = setup("/Objects/bronzecoin", gp.tileSize, gp.tileSize);
     }
 
     public boolean use(Entity entity) {

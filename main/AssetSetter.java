@@ -1,6 +1,7 @@
 package main;
 
 import Entity.NPC_Jake;
+import Entity.NPC_Merchant;
 import Obj.OBJ_DOOR;
 import Obj.OBJ_Key;
 import monster.MON_Gunther;
@@ -48,11 +49,18 @@ public class AssetSetter {
     }
 
     public void setNPC() {
+        int i = 0;
 
         int mapNum = 0;
         gp.Npc[mapNum][0] = new NPC_Jake(gp);
         gp.Npc[mapNum][0].worldX = gp.tileSize * 7;
         gp.Npc[mapNum][0].worldY = gp.tileSize * 10;
+
+        mapNum = 1;
+        i++;
+        gp.Npc[mapNum][i] = new NPC_Merchant(gp);
+        gp.Npc[mapNum][i].worldX = gp.tileSize * 20;
+        gp.Npc[mapNum][i].worldY = gp.tileSize * 15;
 
     }
 

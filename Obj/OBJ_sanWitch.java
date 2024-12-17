@@ -15,6 +15,7 @@ public class OBJ_sanWitch extends Entity {
         name = "San Witch";
         down1 = setup("/Objects/sandwitch", gp.tileSize, gp.tileSize);
         description = "[ " + name + " ]";
+        price = 69;
     }
 
     public boolean use(Entity entity) {
