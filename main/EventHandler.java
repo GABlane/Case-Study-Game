@@ -51,9 +51,13 @@ public class EventHandler {
             if (hit(0, 47, 29, "any") == true) {
                 damagePit(gp.dialogueState);
             } else if (hit(0, 48, 29, "any") == true) {
-                teleport(1, 20, 16);
-            } else if (hit(1, 20, 16, "any") == true) {
-                teleport(0, 44, 25);
+                teleport(1, 20, 20);
+            } else if (hit(1, 20, 20, "any") == true) {
+                teleport(0, 48, 29);
+            } else if (hit(1, 20, 10, "any") == true) {
+                teleport(2, 5, 5);
+            } else if (hit(2, 5, 5, "any") == true) {
+                teleport(1, 20, 10);
             }
         }
 

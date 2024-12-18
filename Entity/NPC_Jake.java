@@ -33,7 +33,7 @@ public class NPC_Jake extends Entity {
 
         dialogues[0] = "Hello, FINN!.";
         dialogues[1] = "SO YOU'VE COME FOR \nANOTHER ADVENTURE?";
-        dialogues[2] = "GO SAVE PRINCESS BUBBLE GUM \nFROM THAT EVIL ICEKING.";
+        dialogues[2] = "GO ON A ADVENTURE FINN.";
         dialogues[3] = "Well, goodluck to you. \n\nI'll go to lady unicord";
 
     }

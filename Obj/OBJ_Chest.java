@@ -4,9 +4,7 @@ import Entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Chest extends Entity {
-
     GamePanel gp;
-    Entity loot;
     boolean opened = false;
 
     public OBJ_Chest(GamePanel gp) {
@@ -34,13 +32,13 @@ public class OBJ_Chest extends Entity {
 
         if (opened == false) {
             StringBuilder sb = new StringBuilder();
-
-            sb.append("You open the chest and found " + loot.name);
+            Entity item = new OBJ_Sword_Normal(gp);
+            sb.append("You open the chest and found " + item.name);
             if (gp.player.inventory.size() == gp.player.maxInventorySize) {
                 sb.append("\n... you canoot carry anymore");
             } else {
-                sb.append("you obtain the" + loot.name);
-                gp.player.inventory.add(loot);
+                sb.append("you obtain the" + item.name);
+                gp.player.inventory.add(item);
                 down1 = image2;
                 opened = true;
             }

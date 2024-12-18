@@ -58,6 +58,7 @@ public class TileManager {
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         loadMap("/maps/world1.txt", 0);
         loadMap("/maps/sampleMap.txt", 1);
+        loadMap("/maps/world02.txt", 2);
     }
 
     public void getTileImage() {

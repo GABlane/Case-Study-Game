@@ -23,7 +23,7 @@ public class Entity {
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
             attackLeft1, attackLeft2, attackRight1, attackRight2;
     public boolean attacking = false;
-    public BufferedImage image, image2, image3;
+    public BufferedImage image, image2, image3; // encapsulation
     public String direction = "down";
 
     public int spriteCounter = 0;
@@ -76,7 +76,6 @@ public class Entity {
     public final int type_pickUpOnly = 7;
     public final int type_Obstacle = 8;
 
-    // episode24
     public boolean alive = true;
     public boolean dying = false;
     int dyingCounter = 0;
@@ -84,6 +83,20 @@ public class Entity {
     int hpBarcounter = 0;
 
     public int shotAvailbleCounter = 0;
+
+    // private BufferedImage image, image2, image3;
+
+    public void getimage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public void getimage1(BufferedImage image) {
+        this.image2 = image;
+    }
+
+    public void getimage2(BufferedImage image) {
+        this.image3 = image;
+    }
 
     // abstractions
     public Entity(GamePanel gp) {
@@ -257,7 +270,7 @@ public class Entity {
                 invisibleCounter = 0;
             }
         }
-        if (shotAvailbleCounter < 30) {
+        if (shotAvailbleCounter < 5) {
             shotAvailbleCounter++;
         }
     }

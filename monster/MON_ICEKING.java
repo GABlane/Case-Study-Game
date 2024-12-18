@@ -2,23 +2,21 @@ package monster;
 
 import java.util.Random;
 import Entity.Entity;
-import Obj.OBJ_Heart;
 import Obj.OBJ_Key;
 import Obj.OBJ_SnowFlake;
-import Obj.OBJ_sanWitch;
 import main.GamePanel;
 
-public class MON_Gunther extends Entity {
+public class MON_ICEKING extends Entity {
     GamePanel gp;
 
-    public MON_Gunther(GamePanel gp) {
+    public MON_ICEKING(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
 
         type = type_monster;
 
-        name = "Gunter";
+        name = "ICE KING";
         speed = 1;
         maxLife = 5;
         life = maxLife;
@@ -39,14 +37,14 @@ public class MON_Gunther extends Entity {
 
     @Override
     public void getImage() {
-        up1 = setup("/monster/Gunter-up1", gp.tileSize, gp.tileSize);
-        up2 = setup("/monster/Gunter-up2", gp.tileSize, gp.tileSize);
-        down1 = setup("/monster/Gunter-down1", gp.tileSize, gp.tileSize);
-        down2 = setup("/monster/Gunter-down2", gp.tileSize, gp.tileSize);
-        left1 = setup("/monster/Gunter-left1", gp.tileSize, gp.tileSize);
-        left2 = setup("/monster/Gunter-left2", gp.tileSize, gp.tileSize);
-        right1 = setup("/monster/Gunter-right1", gp.tileSize, gp.tileSize);
-        right2 = setup("/monster/Gunter-right2", gp.tileSize, gp.tileSize);
+        up1 = setup("/monster/ice-king2", gp.tileSize, gp.tileSize);
+        up2 = setup("/monster/ice-king2", gp.tileSize, gp.tileSize);
+        down1 = setup("/monster/ice-king1", gp.tileSize, gp.tileSize);
+        down2 = setup("/monster/ice-king1", gp.tileSize, gp.tileSize);
+        left1 = setup("/monster/ice-king4", gp.tileSize, gp.tileSize);
+        left2 = setup("/monster/ice-king4", gp.tileSize, gp.tileSize);
+        right1 = setup("/monster/ice-king3", gp.tileSize, gp.tileSize);
+        right2 = setup("/monster/ice-king3", gp.tileSize, gp.tileSize);
     }
 
     public void setAction() {
@@ -90,12 +88,10 @@ public class MON_Gunther extends Entity {
         int i = new Random().nextInt(100) + 1;
 
         // SET MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Heart(gp));
-        } else if (i >= 50 && i <= 80) {
+        if (i < 100) {
+
             dropItem(new OBJ_Key(gp));
-        } else if (i >= 80 && i <= 100) {
-            dropItem(new OBJ_sanWitch(gp));
+
         }
 
     }
