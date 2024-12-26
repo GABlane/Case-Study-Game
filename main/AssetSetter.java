@@ -1,11 +1,11 @@
 package main;
 
-import Obj.OBJ_Boots;
+import Entity.NPC_Jake;
 import Obj.OBJ_Chest;
 import Obj.OBJ_DOOR;
-import Obj.OBJ_Hole;
 import Obj.OBJ_Key;
-// import Obj.OBJ_Sword;
+import monster.MON_Gunther;
+import monster.MON_ICEKING;
 
 public class AssetSetter {
 
@@ -16,30 +16,119 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        int mapNum = 0;
+        int i = 0;
 
-        // gp.obj[0] = new OBJ_Key();
-        // gp.obj[0].worldX = 17 * gp.tileSize;
-        // gp.obj[0].worldY = 14 * gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_DOOR(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 46;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 30;
 
-        gp.obj[5] = new OBJ_Key();
-        gp.obj[5].worldX = 42 * gp.tileSize;
-        gp.obj[5].worldY = 12 * gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Key(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 6;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 45;
 
-        gp.obj[1] = new OBJ_DOOR();
-        gp.obj[1].worldX = 24 * gp.tileSize;
-        gp.obj[1].worldY = 35 * gp.tileSize;
+        mapNum = 1;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Chest(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 20;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 16;
 
-        gp.obj[4] = new OBJ_Chest();
-        gp.obj[4].worldX = 26 * gp.tileSize;
-        gp.obj[4].worldY = 35 * gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_DOOR(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 20;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 12;
 
-        gp.obj[2] = new OBJ_Boots();
-        gp.obj[2].worldX = 16 * gp.tileSize;
-        gp.obj[2].worldY = 45 * gp.tileSize;
+    }
 
-        gp.obj[3] = new OBJ_Hole();
-        gp.obj[3].worldX = 17 * gp.tileSize;
-        gp.obj[3].worldY = 46 * gp.tileSize;
+    public void setNPC() {
 
+        int mapNum = 0;
+        gp.Npc[mapNum][0] = new NPC_Jake(gp);
+        gp.Npc[mapNum][0].worldX = gp.tileSize * 7;
+        gp.Npc[mapNum][0].worldY = gp.tileSize * 10;
+
+    }
+
+    public void setMonster() {
+
+        int mapNum = 0;
+        int i = 0;
+
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 11;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 10;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 21;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 11;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 15;
+
+        mapNum = 1;
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 7;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 8;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 8;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 7;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 7;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 7;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 32;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 34;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 33;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 7;
+
+        i++;
+        gp.monster[mapNum][i] = new MON_Gunther(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 30;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 7;
+
+        mapNum = 2;
+        i++;
+        gp.monster[mapNum][i] = new MON_ICEKING(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 18;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 29;
     }
 }

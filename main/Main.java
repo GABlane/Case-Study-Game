@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        // for futhre updates like storages etc
+
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -11,6 +13,8 @@ public class Main {
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
+
+        gamePanel.config.loadConfig();
 
         window.pack();
 
